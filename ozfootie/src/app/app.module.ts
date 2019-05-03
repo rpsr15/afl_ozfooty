@@ -20,4 +20,5 @@ import { NavbarCmpComponent } from './navbar-cmp/navbar-cmp.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
