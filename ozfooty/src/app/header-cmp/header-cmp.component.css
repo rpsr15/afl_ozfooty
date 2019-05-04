@@ -1,0 +1,24 @@
+.abhishek{
+  background-color: #213159;
+  height: 10vh;
+  width: auto;
+}
+#logo-main{
+  display: block;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  height: 8vh;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+
+}
+
+.navbar-custom{
+  background-color: #213159;
+}
+.navbar-nav > a{
+  color: white;
+  font-size: medium;
+
+}
