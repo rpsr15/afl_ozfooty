@@ -12,4 +12,10 @@ export class NavbarCmpComponent implements OnInit {
   ngOnInit() {
   }
 
+  isCollapsed:boolean = true;
+
+  toggleCollapse(): void {
+    console.log('cc');
+    this.isCollapsed = !this.isCollapsed;
+  }
 }

@@ -5,17 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BodyComponent } from './body/body.component';
 import { NavbarCmpComponent } from './navbar-cmp/navbar-cmp.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { LogoHeaderComponent } from './logo-header/logo-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BodyComponent,
-    NavbarCmpComponent
+    NavbarCmpComponent,
+    LogoHeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CollapseModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
