@@ -1,3 +1,18 @@
-<p>
-  head-on-head-cmp works!
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <p>
+      Head on Head
+    </p>
+  </div>
+<div class="col-md-6">
+  <ngx-select-dropdown tabindex="2" class="test" [multiple]="false" [config]="config" [options]="options"></ngx-select-dropdown>
+</div>
+  <div class="col-md-6">
+    <ngx-select-dropdown tabindex="0" [multiple]="false" [config]="config" [options]="options"></ngx-select-dropdown>
+
+  </div>
+  <div class="col-md-12">
+    <button type="button" class="btn btn-primary" (click)="headToHead(8,15)">Submit</button>
+  </div>
+
+</div>

@@ -9,6 +9,8 @@ import { HomeCmpComponent } from './home-cmp/home-cmp.component';
 import {RouterModule} from '@angular/router';
 import {AppRoutes} from './app.routing';
 import { HeadOnHeadCmpComponent } from './head-on-head-cmp/head-on-head-cmp.component';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HeadOnHeadCmpComponent } from './head-on-head-cmp/head-on-head-cmp.comp
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(AppRoutes)
+    RouterModule.forRoot(AppRoutes),
+    SelectDropDownModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
