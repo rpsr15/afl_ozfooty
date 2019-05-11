@@ -11,6 +11,8 @@ import {AppRoutes} from './app.routing';
 import { HeadOnHeadCmpComponent } from './head-on-head-cmp/head-on-head-cmp.component';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { HttpClientModule } from '@angular/common/http';
+import { NewsHealinesComponent } from './news-healines/news-healines.component';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderCmpComponent,
     SidebarCmpComponent,
     HomeCmpComponent,
-    HeadOnHeadCmpComponent
+    HeadOnHeadCmpComponent,
+    NewsHealinesComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     SelectDropDownModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
