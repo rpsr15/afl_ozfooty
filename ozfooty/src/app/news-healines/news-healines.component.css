@@ -1,0 +1,16 @@
+.news-header {
+    font-size: 1vw;
+    font-weight: 500;
+   border-bottom: 0.1vw solid ;
+}
+.list-group-item{
+    font-size: 0.6vw;
+    padding: 0.2vw;
+    margin-bottom: 0.1vh;
+    margin-top: 0.1vh;
+   border-left: 0;
+   border-right: 0;
+   border-top: 0;
+   
+ 
+}
