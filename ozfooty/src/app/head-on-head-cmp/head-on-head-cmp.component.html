@@ -4,15 +4,69 @@
       Head on Head
     </p>
   </div>
-<div class="col-md-6">
-  <ngx-select-dropdown tabindex="2" class="test" [multiple]="false" [config]="config" [options]="options"></ngx-select-dropdown>
+<div class="col-md-3">
+  <ngx-select-dropdown tabindex="2" class="test" [multiple]="false" [(ngModel)]="myTeamSelect" [config]="config" [options]="options"></ngx-select-dropdown>
 </div>
-  <div class="col-md-6">
-    <ngx-select-dropdown tabindex="0" [multiple]="false" [config]="config" [options]="options"></ngx-select-dropdown>
-
+  <div class="col-md-3">
+    <ngx-select-dropdown class="dp" tabindex="0" [multiple]="false" [(ngModel)]="rivalTeamSelect" [config]="config" [options]="options"></ngx-select-dropdown>
   </div>
-  <div class="col-md-12">
-    <button type="button" class="btn btn-primary" (click)="headToHead(8,15)">Submit</button>
+  <div class="col-md-3">
+    <button type="button" class="btn btn-primary" (click)="headToHead()">Submit</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12" *ngIf="gameResults!=[]">
+    <div class="table-responsive">
+    <table class="table table-sm table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Home Team</th>
+        <th scope="col">Away Team</th>
+        <th scope="col">Home Team Score</th>
+        <th scope="col">Away Team Score</th>
+        <th scope="col">Home Team Goals</th>
+        <th scope="col">Away Team Goals</th>
+        <th scope="col">Winner</th>
+        <th scope="col">Venue</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let game of gameResults; index as i">
+        <td>
+          {{ game.date | date }}
+        </td>
+        <td>
+          {{ game.hteam }}
+        </td>
+        <td>
+          {{ game.ateam }}
+        </td>
+        <td>
+          {{ game.hscore != '0' ? game.hscore : 'NA'}}
+        </td>
+        <td>
+          {{ game.ascore != '0' ? game.ascore : 'NA'}}
+        </td>
+        <td>
+          {{ game.hgoals != '0' ? game.hgoals : 'NA'}}
+        </td>
+        <td>
+          {{ game.agoals != '0' ? game.agoals : 'NA'}}
+        </td>
+        <td>
+          {{ game.winner != null ? game.winner : 'NA'}}
+        </td>
+        <td>
+          {{ game.venue }}
+        </td>
+        <!--<td>{{ country.area | number }}</td>-->
+        <!--<td>{{ country.population | number }}</td>-->
+      </tr>
+      </tbody>
+    </table>
+    </div>
   </div>
 
 </div>
+

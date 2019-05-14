@@ -13,6 +13,8 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { HttpClientModule } from '@angular/common/http';
 import { NewsHealinesComponent } from './news-healines/news-healines.component';
 import { DataService } from './services/data.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,10 @@ import { DataService } from './services/data.service';
     AppRoutingModule,
     RouterModule.forRoot(AppRoutes),
     SelectDropDownModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

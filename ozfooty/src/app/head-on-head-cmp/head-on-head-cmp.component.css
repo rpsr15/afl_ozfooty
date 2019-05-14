@@ -1,3 +1,9 @@
 .test{
   width: 20px;
 }
+th, td{
+  font-size: 1vw;
+}
+.ngx-dropdown-container{
+  width: 90%;
+}
