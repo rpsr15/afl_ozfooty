@@ -23,13 +23,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-<<<<<<< HEAD
-              "src/assets/scss/material-dashboard.scss",
-              "src/assets/css/demo.css"
-=======
+              "src/styles.css","src/assets/scss/material-dashboard.scss",
+              "src/assets/css/demo.css",
               "node_modules/ngx-select-dropdown/dist/assets/style.css"
->>>>>>> 0e22528a0394502cbe8d6d30853209416bdfdbfc
+
             ],
             "scripts": [],
             "es5BrowserSupport": true
