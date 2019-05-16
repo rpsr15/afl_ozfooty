@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-news-healines',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsHealinesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.loadNews();
+  }
+  news = ["sdfsdfsdfsd", "sdfdsfdsfsd", "sdfdsfdsf"];
+
+  loadNews()
+  {
+    this.dataService.getNews().then(
+      (data : [string]) => {
+        console.log(data);
+        this.news = data;
+        
+      }
+    );
   }
 
 }
