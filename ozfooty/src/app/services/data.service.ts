@@ -54,6 +54,8 @@ export class DataService {
           (data) => {
             // this.matches = data;
             // console.log('DATA-->', data);
+
+
             resolve(data);
           }
         );
@@ -147,6 +149,7 @@ export class DataService {
               });
               resolve(this.ladderData);
             }
+
           );
         }
       }

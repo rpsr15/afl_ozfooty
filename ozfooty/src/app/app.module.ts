@@ -17,6 +17,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LadderComponent } from './home-cmp/ladder/ladder.component';
 import { LadderPageComponent } from './ladder-page/ladder-page.component';
+import { FixturesComponent } from './fixtures/fixtures.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LadderPageComponent } from './ladder-page/ladder-page.component';
     HeadOnHeadCmpComponent,
     NewsHealinesComponent,
     LadderComponent,
-    LadderPageComponent
+    LadderPageComponent,
+    FixturesComponent
   ],
   imports: [
     BrowserModule,

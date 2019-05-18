@@ -47,6 +47,7 @@ export class LadderPageComponent implements OnInit {
 
         for (const index in result){
 
+
           this.ladder.push(result[index]);
         }
 

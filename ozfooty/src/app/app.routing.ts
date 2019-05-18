@@ -2,6 +2,7 @@ import {Routes} from '@angular/router';
 import {HomeCmpComponent} from './home-cmp/home-cmp.component';
 import {HeadOnHeadCmpComponent} from './head-on-head-cmp/head-on-head-cmp.component';
 import {LadderPageComponent} from './ladder-page/ladder-page.component';
+import {FixturesComponent} from './fixtures/fixtures.component';
 export const AppRoutes: Routes = [
 
   {
@@ -20,6 +21,10 @@ export const AppRoutes: Routes = [
   {
     path: 'ladder',
     component: LadderPageComponent,
+  },
+  {
+    path: 'fixtures',
+    component: FixturesComponent,
   }
 ];
 
