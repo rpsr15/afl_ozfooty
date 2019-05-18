@@ -54,6 +54,8 @@ export class DataService {
           (data) => {
             // this.matches = data;
             // console.log('DATA-->', data);
+
+
             resolve(data);
           }
         );
@@ -63,8 +65,7 @@ export class DataService {
   }
 
 
-  getLadder()
-  {
+  getLadder() {
     const ladderURL = 'https://api.squiggle.com.au/?q=ladder;source=1';
     const promise = new Promise(
       (resolve) => {
@@ -88,8 +89,8 @@ export class DataService {
               );
               ladderItem.push(tm);
             }
-            //sort ladderItem array
-            ladderItem.sort((a,b) => {
+            // sort ladderItem array
+            ladderItem.sort((a, b) => {
               return a.rank - b.rank;
             });
             resolve(ladderItem);
@@ -103,8 +104,6 @@ export class DataService {
 
 // return team as an array of string
   getTeam() {
-
-
     const promise = new Promise((resolve) => {
         if ( this.teams.length && this.teams.length > 0) {
           console.log("mil gayi ghar se");
@@ -119,8 +118,6 @@ export class DataService {
         }
       }
     );
-
-
     return promise;
   }
 }

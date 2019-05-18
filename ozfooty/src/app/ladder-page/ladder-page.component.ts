@@ -26,7 +26,7 @@ export class LadderPageComponent implements OnInit {
       (result) =>
       {
 
-        for(const index in result){
+        for(const index in result) {
 
           this.ladder.push(result[index]);
         }

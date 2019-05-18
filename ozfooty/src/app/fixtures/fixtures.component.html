@@ -1,0 +1,33 @@
+<div class = "ladder">
+  <div class = "card pl-2">
+    <div class = "r-row">
+      <div class="r-column">
+      <div class = "card-header card-header-danger">
+        <h5 class = "card-title">Fixtures</h5>
+      </div>
+
+      <div class ="card-body">
+        <div class="r-row">
+          <div class="select-year">
+            <ngx-select-dropdown [options]="teamOptions" [config]="teamConfig"></ngx-select-dropdown>
+          </div>
+        <div class="select-year">
+        <ngx-select-dropdown [options]="yearOptions" [config]="yearConfig"></ngx-select-dropdown>
+        </div>
+        <div class="select-year ht">
+        <ngx-select-dropdown [options]="roundOptions" [config]="roundConfig"></ngx-select-dropdown>
+        </div>
+
+          <div class="select-year ht">
+            <button type="button" class="btn btn-primary">Go</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+</div>
+
