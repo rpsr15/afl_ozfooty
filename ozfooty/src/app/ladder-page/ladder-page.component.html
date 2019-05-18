@@ -1,6 +1,8 @@
+<button (click)="test()">Test </button>
 <div class = "ladder">
   <div class = "card pl-2">
    <div class = "r-row">
+     <div class = "r-column">
      <div class = "card-header card-header-danger">
         <h5 class = "card-title">Ladder</h5>
        <p class = "card-category">2019 Toyota AFL Premiership Season</p>
@@ -27,7 +29,8 @@
            <th>SF</th>
 
            </thead>
-           <tbody *ngFor="let item of ladder">
+           <tbody *ngFor="let item of ladder; let o = odd ; let e = even;"
+           [ngClass]="{odd: o, even: e}" >
            <tr>
              <td>{{item.rank}}. {{ item.team }}</td>
              <td>28</td>
@@ -46,8 +49,9 @@
        </div>
 
      </div>
+       </div>
+   </div>  //row end here
 
-   </div>
     <p >Standing are updated with the completion of each game</p>
     <hr class="mb-1">
     <h6>GLOSSARY</h6>

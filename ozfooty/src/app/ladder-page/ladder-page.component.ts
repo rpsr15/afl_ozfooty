@@ -7,6 +7,8 @@ import {LadderItem} from '../model/ladder-item.model';
   templateUrl: './ladder-page.component.html',
   styleUrls: ['./ladder-page.component.css']
 })
+
+
 export class LadderPageComponent implements OnInit {
   ladder: Array<LadderItem> = [];
   options = ['2017', '2018', '2019'];
@@ -22,11 +24,35 @@ export class LadderPageComponent implements OnInit {
   constructor(private service: DataService) { }
 
   ngOnInit() {
+
+    // get ladder
     this.service.getLadder().then(
+      (result) => {
+  
+        for(const index in result){
+
+          this.ladder.push(result[index]);
+        }
+
+      }
+    );
+    this.service.getGamesByRoundYear(2019,9).then(
       (result) =>
       {
+        console.log(result);
+      }
+    );
+  }
 
-        for(const index in result) {
+
+
+  test()
+  {
+    this.service.getLadder().then(
+      (result) => {
+        console.log("received in testr"+result);
+        for(const index in result){
+
 
           this.ladder.push(result[index]);
         }
@@ -34,5 +60,6 @@ export class LadderPageComponent implements OnInit {
       }
     );
   }
+
 
 }

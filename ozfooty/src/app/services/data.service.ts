@@ -16,6 +16,8 @@ export class DataService {
 
   newsUrl = 'https://newsapi.org/v2/top-headlines?country=au&category=sports&apiKey=bfcd98dce90244bd8d79b0e7f3b50511&q=afl';
   headlines: string[];
+  ladderData: Array<LadderItem> = [];
+  gamesByRoundAndYear : Array<Game> = [];
   constructor(private httpService: HttpClient) {
 
   }
@@ -63,39 +65,102 @@ export class DataService {
     });
     return promise;
   }
+ getGamesByRoundYear(year, round) {
+   const gamesURL = `https://api.squiggle.com.au/?q=games;year=${year};round=${round}`;
+   console.log(gamesURL);
+   const promise = new Promise(
+    (resolve) => {
+
+      if (this.gamesByRoundAndYear.length > 0) {
+          resolve(this.gamesByRoundAndYear);
+      } else {
+          this.httpService.get(gamesURL).subscribe(
+            (data: any) => {
+                let gameData = data.games;
+                for(const index in gameData)
+                {
+                  let game = gameData[index];
+                  const gameNew = new Game(
+                    +game.complete,
+                    +game.is_grand_final,
+                    game.tz,
+                    +game.hbehinds,
+                    game.ateam,
+                    +game.winnerteamid,
+                    +game.hgoals,
+                    game.updated,
+                    +game.round,
+                    +game.is_final,
+                    +game.hscore,
+                    +game.abehinds,
+                    game.winner,
+                    +game.ascore,
+                    game.hteam,
+                    game.ateamid,
+                    game.venue,
+                    +game.hteamid,
+                    +game.agoals,
+                    +game.year,
+                    game.date,
+                    +game.id
+                  );
+                  this.gamesByRoundAndYear.push(gameNew);
+                }
+            }
+          );
+          resolve(this.gamesByRoundAndYear);
+      }
 
 
-  getLadder() {
+
+    }
+
+  );
+   return promise;
+ }
+
+  getLadder()
+  {
+
     const ladderURL = 'https://api.squiggle.com.au/?q=ladder;source=1';
     const promise = new Promise(
       (resolve) => {
-        this.httpService.get(ladderURL).subscribe(
-          (data: any) => {
-            const ladderData = data.ladder
-            // tslint:disable-next-line:prefer-const
-            let ladderItem: Array<LadderItem> = [];
-            for (const index in ladderData){
+        console.log("ladder data length is ",this.ladderData.length);
+        if(this.ladderData.length > 0)
+        {
+          console.log("found item in ladder data");
+          resolve(this.ladderData);
+        }else{
+          console.log("not found items in ladder");
+          this.httpService.get(ladderURL).subscribe(
+            (data: any) => {
+              const ladderData = data.ladder
+              // tslint:disable-next-line:prefer-const
+              this.ladderData = [];
+              for (const index in ladderData){
 
-              const item = ladderData[index];
+                const item = ladderData[index];
 
-              const tm = new LadderItem(
-                +item.year,
-                +item.round,
-                +item.rank,
-                +item.percentage,
-                item.source,
-                item.team,
-                Date.parse(item.updated)
-              );
-              ladderItem.push(tm);
+                const tm = new LadderItem(
+                  +item.year,
+                  +item.round,
+                  +item.rank,
+                  +item.percentage,
+                  item.source,
+                  item.team,
+                  Date.parse(item.updated)
+                );
+                this.ladderData.push(tm);
+              }
+              //sort ladderItem array
+              this.ladderData.sort((a,b) => {
+                return a.rank - b.rank;
+              });
+              resolve(this.ladderData);
             }
-            // sort ladderItem array
-            ladderItem.sort((a, b) => {
-              return a.rank - b.rank;
-            });
-            resolve(ladderItem);
-          }
-        );
+
+          );
+        }
       }
     );
     return promise;
