@@ -26,7 +26,6 @@
 
               "src/assets/css/styles.css",
               "src/assets/scss/material-dashboard.scss",
-              "src/assets/css/demo.css",
               "node_modules/ngx-select-dropdown/dist/assets/style.css"
 
             ],

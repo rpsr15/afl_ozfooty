@@ -1,17 +1,42 @@
-<app-header-cmp></app-header-cmp>
-<div class="container-fluid d-flex h-100 flex-column" style="padding: 0px;">
+<!--First row is for header-->
+  <div class = "r-row">
+    <div class = "r-column">
+      <app-header-cmp></app-header-cmp>
+    </div>
+  </div>
+<!--second row-->
+  <div class="r-row">
+<!--    columns for sidebar-->
+      <div class = "r-column">
+          <div class = "r-row">
+            <div >
+              <app-news-healines></app-news-healines>s
+            </div>
 
-  <div class="row flex-fill d-flex overflow-auto">
-    <div class="col-md-3">
-      <app-sidebar-cmp></app-sidebar-cmp>
-    </div>
-    <div class="col-md-9">
-      <router-outlet></router-outlet>
-    </div>
+          </div>
+      </div>
+<!--    column for route-->
+      <div class = "r-triple-column">
+        <div class = "home">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
   </div>
 
 
-</div>
+
+
+
+<!--<div class="d-flex flex-column">-->
+<!--  <div class="flex-fill">-->
+<!--      <app-header-cmp></app-header-cmp>-->
+<!--  </div>-->
+<!--  <div class="d-flex bg-secondary mb-3">-->
+<!--    <div class="bg-info" style="width: 20vw;">Flex item 1</div>-->
+<!--    <div class="p-2 flex-fill bg-warning">Flex item 2</div>-->
+
+<!--  </div>-->
+<!--</div>-->
 
 <!--<div class="container-fluid d-flex h-100 flex-column">-->
 <!--  &lt;!&ndash; I want this container to stretch to the height of the parent &ndash;&gt;-->

@@ -9,11 +9,11 @@ import {DataService} from '../services/data.service';
   styleUrls: ['./head-on-head-cmp.component.css']
 })
 export class HeadOnHeadCmpComponent implements OnInit {
-  teams: [];
-  matches : [];
+  teams = ['india', 'pakistan', 'china', 'nepal'];
+  matches: [];
 
   config = {
-    displayKey: "name", // if objects array passed which key to be displayed defaults to description
+    displayKey: 'name', // if objects array passed which key to be displayed defaults to description
     search: true,
 
   };
@@ -21,7 +21,7 @@ export class HeadOnHeadCmpComponent implements OnInit {
   myTeamSelect: any = [];
   rivalTeamSelect: any = [];
 
-  gameResults:any = [];
+  gameResults: any = [];
 
   constructor(private httpClient: HttpClient, private dataService: DataService) { }
 

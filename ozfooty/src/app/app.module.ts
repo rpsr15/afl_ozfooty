@@ -15,6 +15,8 @@ import { NewsHealinesComponent } from './news-healines/news-healines.component';
 import { DataService } from './services/data.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { LadderComponent } from './home-cmp/ladder/ladder.component';
+import { LadderPageComponent } from './ladder-page/ladder-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     SidebarCmpComponent,
     HomeCmpComponent,
     HeadOnHeadCmpComponent,
-    NewsHealinesComponent
+    NewsHealinesComponent,
+    LadderComponent,
+    LadderPageComponent
   ],
   imports: [
     BrowserModule,

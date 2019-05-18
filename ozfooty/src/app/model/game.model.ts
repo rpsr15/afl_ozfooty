@@ -1,19 +1,31 @@
+// The Game class represents the game detail of a AFL match
 export class Game {
-  abehinds: number;
-  agoals: number;
-  ascore: number;
-  ateam: string;
-  ateamid: number;
-  complete: number;
-  id: number;
-  is_final: number;
-  is_grand_final: number;
-  round: number;
-  tz: string;
-  updated: Date;
-  venue: string;
-  winner: string;
-  winnerteamid: number;
-  year: number;
+
+  constructor(
+    public complete: number,
+    public is_grand_final: number,
+    public tz:string,
+    public hbehinds: number,
+    public ateam: string,
+    public winnerteamid: number,
+    public hgoals: number,
+    public updated: string,
+    public round: number,
+    public is_final: number,
+    public hscore: number,
+    public abehinds: number,
+    public winner: string,
+    public ascore: number,
+    public hteam: string,
+    public ateamid: number,
+    public venue: string,
+    public hteamid: number,
+    public agoals: number,
+    public year: number,
+    public date: string,
+    public id: number
+
+
+  ){}
 
 }
