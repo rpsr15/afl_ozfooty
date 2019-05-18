@@ -27,9 +27,9 @@
            <th>SF</th>
 
            </thead>
-           <tbody>
+           <tbody *ngFor="let item of ladder">
            <tr>
-             <td>1. Geelong Cats</td>
+             <td>{{item.rank}}. {{ item.team }}</td>
              <td>28</td>
              <td>8</td>
              <td>7</td>
@@ -37,94 +37,9 @@
              <td>0</td>
              <td>779</td>
              <td>535</td>
-             <td>145.6</td>
+             <td>{{item.percentage}}</td>
              <td>WWWLW</td>
            </tr>
-           <tr>
-             <td>1. Geelong Cats</td>
-             <td>28</td>
-             <td>8</td>
-             <td>7</td>
-             <td>1</td>
-             <td>0</td>
-             <td>779</td>
-             <td>535</td>
-             <td>145.6</td>
-             <td>WWWLW</td>
-           </tr>
-           <tr>
-             <td>1. Geelong Cats</td>
-             <td>28</td>
-             <td>8</td>
-             <td>7</td>
-             <td>1</td>
-             <td>0</td>
-             <td>779</td>
-             <td>535</td>
-             <td>145.6</td>
-             <td>WWWLW</td>
-           </tr>
-           <tr>
-             <td>1. Geelong Cats</td>
-             <td>28</td>
-             <td>8</td>
-             <td>7</td>
-             <td>1</td>
-             <td>0</td>
-             <td>779</td>
-             <td>535</td>
-             <td>145.6</td>
-             <td>WWWLW</td>
-           </tr>
-           <tr>
-             <td>1. Geelong Cats</td>
-             <td>28</td>
-             <td>8</td>
-             <td>7</td>
-             <td>1</td>
-             <td>0</td>
-             <td>779</td>
-             <td>535</td>
-             <td>145.6</td>
-             <td>WWWLW</td>
-           </tr>
-           <tr>
-             <td>1. Geelong Cats</td>
-             <td>28</td>
-             <td>8</td>
-             <td>7</td>
-             <td>1</td>
-             <td>0</td>
-             <td>779</td>
-             <td>535</td>
-             <td>145.6</td>
-             <td>WWWLW</td>
-           </tr>
-           <tr>
-             <td>1. Geelong Cats</td>
-             <td>28</td>
-             <td>8</td>
-             <td>7</td>
-             <td>1</td>
-             <td>0</td>
-             <td>779</td>
-             <td>535</td>
-             <td>145.6</td>
-             <td>WWWLW</td>
-           </tr>
-           <tr>
-             <td>1. Geelong Cats</td>
-             <td>28</td>
-             <td>8</td>
-             <td>7</td>
-             <td>1</td>
-             <td>0</td>
-             <td>779</td>
-             <td>535</td>
-             <td>145.6</td>
-             <td>WWWLW</td>
-           </tr>
-
            </tbody>
 
          </table>

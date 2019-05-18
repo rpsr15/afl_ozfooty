@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../services/data.service';
+import {LadderItem} from '../model/ladder-item.model';
 
 @Component({
   selector: 'app-ladder-page',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ladder-page.component.css']
 })
 export class LadderPageComponent implements OnInit {
+  ladder: Array<LadderItem> = [];
   options = ['2017', '2018', '2019'];
   config = {
     height: 'auto',
@@ -16,9 +19,20 @@ export class LadderPageComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     searchOnKey: 'name' // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
   };
-  constructor() { }
+  constructor(private service: DataService) { }
 
   ngOnInit() {
+    this.service.getLadder().then(
+      (result) =>
+      {
+
+        for(const index in result){
+
+          this.ladder.push(result[index]);
+        }
+
+      }
+    );
   }
 
 }
