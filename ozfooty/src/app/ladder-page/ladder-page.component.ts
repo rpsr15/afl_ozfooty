@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../services/data.service';
 import {LadderItem} from '../model/ladder-item.model';
+import {Game} from '../model/game.model';
 
 @Component({
   selector: 'app-ladder-page',
@@ -10,6 +11,7 @@ import {LadderItem} from '../model/ladder-item.model';
 
 
 export class LadderPageComponent implements OnInit {
+  gameData: Array<Game> = [];
   ladder: Array<LadderItem> = [];
   options = ['2017', '2018', '2019'];
   config = {
@@ -28,36 +30,37 @@ export class LadderPageComponent implements OnInit {
     // get ladder
     this.service.getLadder().then(
       (result) => {
-  
-        for(const index in result){
-
-          this.ladder.push(result[index]);
-        }
-
-      }
-    );
-    this.service.getGamesByRoundYear(2019,9).then(
-      (result) =>
-      {
         console.log(result);
-      }
-    );
-  }
+        //console.log("round is"+result[0].round);
+        //get data for round
+        //get game data for current year and round
+       
+        this.service.getGamesByRoundYear(2019, result[0].round).then(
+          (gameD:any) => {
+            console.log(gameD);
+            
+            //generate data
+            this.generateData(gameD);
 
+          }
+        );
 
-  test()
-  {
-    this.service.getLadder().then(
-      (result) => {
-        console.log("received in testr"+result);
-        for(const index in result){
+        for (const index in result){
 
           this.ladder.push(result[index]);
         }
 
+
       }
     );
+
   }
+
+  generateData(data)
+  {
+    console.log("generte data",this.ladder.length,this.gameData.length);
+  }
+
 
 
 }

@@ -1,5 +1,11 @@
 // The ladder item class represents each item of the ladder table
 export class LadderItem{
+  played: number;
+  won : number;
+  lost: number;
+  draw: number;
+  form: string;
+
   constructor(
     public year: number,
     public round: number,
