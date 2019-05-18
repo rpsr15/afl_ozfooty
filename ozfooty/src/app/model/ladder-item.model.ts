@@ -4,7 +4,7 @@ export class LadderItem{
   won : number;
   lost: number;
   draw: number;
-  form: string;
+  form: [];
 
   constructor(
     public year: number,
@@ -14,5 +14,7 @@ export class LadderItem{
     public source: string,
     public team: string,
     public updated: number,
-  ) {}
+  ) {
+    this.form = [];
+  }
 }

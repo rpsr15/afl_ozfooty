@@ -66,7 +66,7 @@ export class DataService {
 
 
   getGamesByRoundYear(year, round) {
-    const gamesURL = `https://api.squiggle.com.au/?q=games;year=${year};round=${round}`;
+    const gamesURL = `https://api.squiggle.com.au/?q=games;year=${year};complete=100`;
     console.log(gamesURL);
     const promise = new Promise(
       (resolve) => {

@@ -30,14 +30,14 @@ export class LadderPageComponent implements OnInit {
     // get ladder
     this.service.getLadder().then(
       (result) => {
-        console.log(result);
+        //console.log(result);
         //console.log("round is"+result[0].round);
         //get data for round
         //get game data for current year and round
        
         this.service.getGamesByRoundYear(2019, result[0].round).then(
           (gameD:any) => {
-            console.log(gameD);
+           // console.log(gameD);
             
             //generate data
             this.generateData(gameD);
@@ -57,9 +57,47 @@ export class LadderPageComponent implements OnInit {
 
   }
 
-  generateData(data)
+  generateData(data: Array<Game>)
   {
-    console.log("generte data",this.ladder.length,this.gameData.length);
+    for(let i = 0 ; i < this.ladder.length; i++)
+    {
+      //console.log(this.ladder[i].team);
+      const team = this.ladder[i].team;
+     // console.log("current team ",team);
+      let played = 0;
+      let won = 0;
+      let loss = 0;
+      let form = '';
+      for(let j = 0 ; j < data.length;j++ )
+      {
+        const ateam = data[j].ateam;
+        let hteam = data[j].hteam;
+       // console.log(ateam, hteam);
+
+        if ((team === ateam || team === hteam) && data[j].round <= this.ladder[i].round) {
+
+          played++;
+          if(data[j].winner === team) {
+           //   console.log(data[j].winner);
+              won++;
+              // @ts-ignore
+              this.ladder[i].form.push('W');
+          } else {
+              loss++;
+              // @ts-ignore
+            this.ladder[i].form.push('L');
+          }
+        }
+      }
+      //console.log('Played: ',played,' won: ',won,' loss ',loss,' form ',form );
+      this.ladder[i].played = played;
+      this.ladder[i].lost = loss;
+      this.ladder[i].won = won;
+     // this.ladder[i].form = form;
+      this.ladder[i].form.splice(0, this.ladder[i].form.length-5);
+      console.log(this.ladder[i].form);
+    }
+
   }
 
 

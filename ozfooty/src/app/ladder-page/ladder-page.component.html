@@ -18,7 +18,7 @@
          <table class="table">
            <thead class="text-primary">
               <th>Team</th>
-           <th>PTS</th>
+
            <th>P</th>
            <th>W</th>
            <th>L</th>
@@ -33,15 +33,23 @@
            [ngClass]="{odd: o, even: e}" >
            <tr>
              <td>{{item.rank}}. {{ item.team }}</td>
-             <td>28</td>
-             <td>8</td>
+
+             <td>{{item.played}}</td>
              <td>7</td>
              <td>1</td>
              <td>0</td>
              <td>779</td>
              <td>535</td>
              <td>{{item.percentage}}</td>
-             <td>WWWLW</td>
+             <td >
+               <div class="r-row">
+                 <div *ngFor="let c of item.form" >
+                 <div [ngClass]="(c === 'W')?'letter-w':'letter-l'" >{{c}}</div>
+                 </div>
+               </div>
+
+
+             </td>
            </tr>
            </tbody>
 
