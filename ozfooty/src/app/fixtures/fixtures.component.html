@@ -9,21 +9,95 @@
       <div class ="card-body">
         <div class="r-row">
           <div class="select-year">
-            <ngx-select-dropdown [options]="teamOptions" [config]="teamConfig"></ngx-select-dropdown>
+            <ngx-select-dropdown [options]="teamOptions" [(ngModel)]="myTeamSelect" [config]="teamConfig"></ngx-select-dropdown>
           </div>
         <div class="select-year">
-        <ngx-select-dropdown [options]="yearOptions" [config]="yearConfig"></ngx-select-dropdown>
+        <ngx-select-dropdown [options]="yearOptions" [(ngModel)]="yearSelect"[config]="yearConfig"></ngx-select-dropdown>
         </div>
-        <div class="select-year ht">
-        <ngx-select-dropdown [options]="roundOptions" [config]="roundConfig"></ngx-select-dropdown>
+        <div class="select-year">
+        <ngx-select-dropdown [options]="roundOptions" [(ngModel)]="roundSelect" [config]="roundConfig"></ngx-select-dropdown>
         </div>
 
-          <div class="select-year ht">
-            <button type="button" class="btn btn-primary">Go</button>
+          <div style="margin: 0.5vw;">
+            <button type="button" class="btn btn-primary" (click)="headToHead()">Go</button>
           </div>
 
         </div>
+
+        <!--game results-->
+
+
+        <!--<div class=""table-responsive>-->
+          <!--<div *ngFor="let d of gameDates">-->
+            <!--<h5>{{d | date }} </h5>-->
+          <!--<table class="table">-->
+            <!--<thead class="text-primary">-->
+            <!--<th>Home Team</th>-->
+            <!--<th>Away Team</th>-->
+            <!--<th>Home Team Score</th>-->
+            <!--<th>Away Team Score</th>-->
+            <!--<th>Winner</th>-->
+            <!--</thead>-->
+            <!--<tbody *ngFor="let item of gameResults; let o = odd ; let e = even;"-->
+                   <!--[ngClass]="{odd: o, even: e}" >-->
+            <!--<tr *ngIf='d === item.date.slice(0,10)'>-->
+              <!--<td>{{item.hteam}}</td>-->
+              <!--<td>{{item.ateam}}</td>-->
+              <!--<td>{{item.hscore}}</td>-->
+              <!--<td>{{item.ascore}}</td>-->
+              <!--<td>{{item.winner}}</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+
+          <!--</table>-->
+          <!--</div>-->
+        <!--</div>-->
+      <div class="game-display" *ngFor="let d of gameDates">
+        <div class="game-date">{{d | date}}</div>
+        <div class="game-display-card card pl-2">
+          <div class="r-row">
+            <div class="r-column" >
+              <div class="inner-content">
+              <img src="https://squiggle.com.au/wp-content/themes/squiggle/assets/images/Adelaide.jpg">
+              </div>
+            </div>
+            <div class="r-double-column">
+              <div class="inner-content location" style="margin-top: 8%;">
+                <div class="time ">7:50 PM</div>
+                <i class="fas fa-map-marker-alt"></i>
+                Adelaide Oval
+              </div>
+            </div>
+            <div class="r-column">
+              <div class="inner-content">
+              <img src="https://squiggle.com.au/wp-content/themes/squiggle/assets/images/Brisbane.jpg">
+              </div>
+            </div>
+            <div class="r-double-column">
+              <div class="inner-content"  style="margin-top: 8%;">
+               <div class="r-row">
+                 <div class="r-column">
+                   Adelaide Crows
+                 </div>
+                 <div class="r-column">
+                   65.3%
+                 </div>
+               </div>
+                <div class="r-row">
+                  <div class="r-column">
+                    Melbourne
+                  </div>
+                  <div class="r-column">
+                    34.7%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      </div>
+
     </div>
     </div>
   </div>

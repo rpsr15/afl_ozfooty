@@ -1,24 +1,39 @@
+<!--<div class="card">-->
+
+  <!--&lt;!&ndash;Dropdowns&ndash;&gt;-->
+  <!--<div class="d-sm-flex p-3">-->
+    <!--<div class="p-1 flex-fill">-->
+        <!--<div class="col-md-6">-->
+          <!--<ngx-select-dropdown  [multiple]="false" [(ngModel)]="myTeamSelect"  [options]="options" [config]="config"    ></ngx-select-dropdown>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="p-1 flex-fill">-->
+        <!--<div class="col-md-6">-->
+          <!--<ngx-select-dropdown  [multiple]="false" [(ngModel)]="myTeamSelect"  [options]="options" [config]="config"    ></ngx-select-dropdown>-->
+        <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--&lt;!&ndash;Team vd images&ndash;&gt;-->
 
 
-<div class="d-sm-flex p-3 ">
-  <div class="card">
-test
-  </div>
-<!--  <div class="p-1 flex-fill">-->
-
-<!--    <div class="d-flex justify-content-center">-->
-<!--      <ngx-select-dropdown [multiple]="false" [(ngModel)]="myTeamSelect"  [options]="teams"   ></ngx-select-dropdown>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="p-2 flex-fill">-->
-
-<!--    <div class="d-flex justify-content-center">-->
-<!--      <ngx-select-dropdown></ngx-select-dropdown>-->
-<!--    </div>-->
-<!--  </div>-->
-
-</div>
-<!--<div class="d-flex justify-content-center">-->
-<!--  <button>go</button>-->
 <!--</div>-->
 
+<div class="head-on-head">
+  <div class="card pl-2">
+    <div class="r-row">
+      <div class="r-column">
+        <div class = "card-header card-header-danger">
+          <h5 class = "card-title">Head on Head</h5>
+          <p class = "card-category">Team comparision</p>
+        </div>
+
+        <div class="card-body">
+          <div  class = "select-year">
+          <ngx-select-dropdown  [multiple]="false" [(ngModel)]="myTeamSelect"  [options]="options" [config]="config"></ngx-select-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

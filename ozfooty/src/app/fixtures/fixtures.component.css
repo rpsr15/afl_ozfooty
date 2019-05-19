@@ -17,7 +17,8 @@ h2 {
   background: #222D5A;
 }
 .select-year{
-  width: 10vw;
+  width: 19vw;
+  padding: 1vw;
 }
 tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
   background-color: #dadff1;
@@ -25,3 +26,52 @@ tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > t
 .ht{
 
 }
+.table th, .table td {
+  padding: 0rem !important;
+}
+h5{
+  margin-bottom: 0px;
+}
+img{
+  height: 80px;
+  width: 80px;
+}
+.inner-content{
+  padding: 1vw;
+}
+.game-display-card{
+  width: 50vw;
+
+}
+.location{
+  color: #222D5A;
+  font-weight: 600;
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.2vw;
+
+  padding: 1vw;
+}
+.game-date{
+  color: #222D5A;
+  font-weight: 600;
+  text-decoration: none;
+  outline: none;
+  font-size: 1.5vw;
+}
+.time{
+  background-color: #f0f3f8;
+  text-align: center;
+  font-size: 1.2vw;
+  font-weight: bold;
+  color: #222D5A;
+}
+
+
+
+/*.ngx-dropdown-list-container{*/
+  /*height:20vw !important;*/
+  /*overflow-y: scroll!important;*/
+/*}*/

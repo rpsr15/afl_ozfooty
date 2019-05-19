@@ -65,6 +65,21 @@ export class DataService {
     });
     return promise;
   }
+
+  getCurrentRound() {
+    const roundUrl = 'https://api.squiggle.com.au/?q=games;year=2019;complete=0';
+    const promise = new Promise(
+      (resolve) =>{
+        this.httpService.get(roundUrl).subscribe((data: any) => {
+          // console.log('Current ROund ->',data.games[0].round);
+
+          resolve(data.games[0].round);
+        });
+      }
+    );
+    return promise;
+  }
+
  getGamesByRoundYear(year, round) {
    const gamesURL = `https://api.squiggle.com.au/?q=games;year=${year};round=${round}`;
    console.log(gamesURL);
@@ -106,9 +121,10 @@ export class DataService {
                   );
                   this.gamesByRoundAndYear.push(gameNew);
                 }
+                resolve(this.gamesByRoundAndYear);
             }
           );
-          resolve(this.gamesByRoundAndYear);
+
       }
 
 
