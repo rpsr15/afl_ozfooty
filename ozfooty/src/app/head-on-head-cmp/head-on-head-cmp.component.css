@@ -8,3 +8,43 @@ th, td{
  .head-on-head-card {
    padding: 3vw;
 }
+.ladder {
+  margin: 1vw;
+}
+
+h2 {
+  color: #111;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  margin: 0 0 24px;
+  padding: 0 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.card-header-danger{
+  background: #222D5A;
+}
+.go-button{
+  width: 10vw;
+}
+.select-year{
+  width: 20vw;
+}
+
+.even{
+  background-color: #dadff1;
+}
+.title-card{
+  font-size: 1.5vw;
+  font-weight: 100;
+  padding: 1vw;
+
+}
+.logo{
+  height: 80px;
+  width: 80px;
+  padding: 1vw;
+}
+

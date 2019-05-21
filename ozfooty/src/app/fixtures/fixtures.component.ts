@@ -18,8 +18,8 @@ export class FixturesComponent implements OnInit {
   dateArray = [];
   gameResults = [];
   gameDates: Set<string>;
-   minDate ;
-   maxDate;
+  gameTips = [];
+
   yearOptions = ['2017', '2018', '2019'];
   yearConfig = {
     height: 'auto',
@@ -108,7 +108,7 @@ export class FixturesComponent implements OnInit {
     // this.roundOptions.apply(null, {length: N}).map(Number.call, Number)
     this.getDropdownTeamInfo();
     this.setRounds();
-   // this.dataService.getCurrentRound();
+    this.dataService.getTippings(408);
 
   }
 
@@ -131,8 +131,7 @@ export class FixturesComponent implements OnInit {
 
   }
 
-  testDates()
-  {
+  testDates() {
     console.log(this.gameDates);
     this.gameDates.forEach(
      (a) => {
@@ -147,6 +146,8 @@ export class FixturesComponent implements OnInit {
 
     this.gameResults = [];
     this.dateArray = [];
+    this.gameTips = [];
+    this.gameDates = new Set();
 
 
     this.dataService.getGamesByRoundYear('2019', round).then((data: any) => {
@@ -156,22 +157,18 @@ export class FixturesComponent implements OnInit {
 
       for(const index in games) {
 
-        // filter with team index
-        // console.log('in for');
         const game = games[index] ;
 
-        // console.log();
-        // this.games.push(game);
-        // let currentDate = Date.parse(game.date);
-        // console.log(currentDate.getDate());
-        // cosole.log(currentDate.get)
 
         if (this.myTeamSelect) {
           const myteam = this.myTeamSelect.id;
           if (game.ateamid == myteam || game.hteamid == myteam) {
             // this.storeGameAndDate(game, game.date);
-            this.gameDates.add(game.date.slice(0, 10));
-            this.gameResults.push(game);
+            this.dataService.getTippings(game.id).then(( tipData:any) => {
+              this.gameTips.push(tipData.tips);
+              this.gameDates.add(game.date.slice(0, 10));
+              this.gameResults.push(game);
+            });
           }
         } else {
           // this.storeGameAndDate(game, game.date);
@@ -182,7 +179,8 @@ export class FixturesComponent implements OnInit {
       }
       // done loading data into gamess array and dates
       // this.testDates();
-      console.log('GAME --> ',this.gameResults);
+      // console.log('GAME --> ', this.gameResults);
+      console.log('in call service', this.gameTips);
     });
   }
 

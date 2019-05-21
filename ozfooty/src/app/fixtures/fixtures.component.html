@@ -23,7 +23,9 @@
           </div>
 
         </div>
-
+        <div *ngFor="let t of gameTips">
+          this  {{t.gameid}}
+        </div>
         <!--game results-->
 
 
@@ -52,48 +54,53 @@
           <!--</table>-->
           <!--</div>-->
         <!--</div>-->
+
       <div class="game-display" *ngFor="let d of gameDates">
         <div class="game-date">{{d | date}}</div>
-        <div class="game-display-card card pl-2">
+        <div class="display-card" *ngFor="let game of gameResults">
+        <div class="game-display-card card pl-2" *ngIf='d === game.date.slice(0,10)'>
           <div class="r-row">
             <div class="r-column" >
               <div class="inner-content">
-              <img src="https://squiggle.com.au/wp-content/themes/squiggle/assets/images/Adelaide.jpg">
+              <img src='assets/img/team-logo/{{game.hteam}}.jpg'>
               </div>
             </div>
             <div class="r-double-column">
               <div class="inner-content location" style="margin-top: 8%;">
                 <div class="time ">7:50 PM</div>
                 <i class="fas fa-map-marker-alt"></i>
-                Adelaide Oval
+                {{game.venue}}
               </div>
             </div>
             <div class="r-column">
               <div class="inner-content">
-              <img src="https://squiggle.com.au/wp-content/themes/squiggle/assets/images/Brisbane.jpg">
+              <img src='assets/img/team-logo/{{game.ateam}}.jpg'>
+
               </div>
             </div>
+
             <div class="r-double-column">
-              <div class="inner-content"  style="margin-top: 8%;">
-               <div class="r-row">
-                 <div class="r-column">
-                   Adelaide Crows
+              <div class="inner-content"  style="margin-top: 8%;" *ngFor="let tip of gameTips">
+               <div class="r-row" >
+                 <div class="r-double-column">
+                   {{game.hteam}}
                  </div>
                  <div class="r-column">
-                   65.3%
+                   {{tip.tips}}%
                  </div>
                </div>
                 <div class="r-row">
-                  <div class="r-column">
-                    Melbourne
+                  <div class="r-double-column">
+                   {{game.ateam}}
                   </div>
                   <div class="r-column">
-                    34.7%
+                    {{tip.confidence}}%
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
       </div>

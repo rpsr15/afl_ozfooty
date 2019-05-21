@@ -29,11 +29,172 @@
         </div>
 
         <div class="card-body">
-          <div  class = "select-year">
-          <ngx-select-dropdown  [multiple]="false" [(ngModel)]="myTeamSelect"  [options]="options" [config]="config"></ngx-select-dropdown>
+          <div class="r-row">
+          <div class="r-column">
+            <div  class = "select-year">
+              <ngx-select-dropdown  [multiple]="false" [(ngModel)]="myTeamSelect" (change)="myChange($event)" [options]="options" [config]="config"></ngx-select-dropdown>
+            </div>
+            <div class="r-column logo" *ngIf="teamOne">
+              <img src='assets/img/team-logo/{{teamOne.name}}.jpg'>
+            </div>
+          </div>
+          <div class="r-column">
+            <div  class = "select-year">
+              <ngx-select-dropdown  [multiple]="false" [(ngModel)]="rivalTeamSelect" (change)="myChangeTwo($event)" [options]="options" [config]="config"    ></ngx-select-dropdown>
+            </div>
+            <div class="r-column logo" *ngIf="teamTwo">
+              <img src='assets/img/team-logo/{{teamTwo.name}}.jpg'>
+            </div>
+          </div>
+            <div class="r-column">
+              <div  class = "go-button">
+              <button type="button" class="btn btn-primary" (click)="headToHead()">Go</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="card pl-2" *ngIf="gameResults.length>0">
+    <div class="row title-card">
+      <div class="col">
+        Summary
+      </div>
+    </div>
+    <div class="row">
+      <div class="card-body">
+        <div class="col">
+          {{teamOne.name}} has winning chance of {{winPercentage}} %.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="card pl-2" *ngIf="gameResults.length>0">
+    <div class="row title-card">
+      <div class="col">
+        Results
+      </div>
+      <div class="col-md-12">
+        <div class="table-responsive">
+        <table class="table table-responsive-md table-striped">
+          <thead>
+           <tr>
+           <th scope="col">Date</th>
+            <th scope="col">Home Team</th>
+            <th scope="col">Away Team</th>
+            <th scope="col">Home Team Score</th>
+            <th scope="col">Away Team Score</th>
+            <th scope="col">Home Team Goals</th>
+            <th scope="col">Away Team Goals</th>
+            <th scope="col">Winner</th>
+            <th scope="col">Venue</th>
+          </tr>
+        </thead>
+          <tbody>
+        <tr *ngFor="let game of gameResults;">
+            <td>
+              {{ game.date | date }}
+            </td>
+            <td>
+              {{ game.hteam }}
+            </td>
+            <td>
+              {{ game.ateam }}
+            </td>
+            <td>
+              {{ game.hscore != '0' ? game.hscore : 'NA'}}
+            </td>
+            <td>
+              {{ game.ascore != '0' ? game.ascore : 'NA'}}
+            </td>
+            <td>
+              {{ game.hgoals != '0' ? game.hgoals : 'NA'}}
+            </td>
+            <td>
+              {{ game.agoals != '0' ? game.agoals : 'NA'}}
+            </td>
+            <td>
+              {{ game.winner != null ? game.winner : 'NA'}}
+            </td>
+            <td>
+              {{ game.venue }}
+            </td>
+            <!--<td>{{ country.area | number }}</td>-->
+            <!--<td>{{ country.population | number }}</td>-->
+          </tr>
+       </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card pl-2" *ngIf="upcomingResults.length>0">
+    <div class="row title-card">
+      <div class="col">
+        Upcomming Game
+      </div>
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-responsive-md table-striped">
+            <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Home Team</th>
+              <th scope="col">Away Team</th>
+              <th scope="col">Home Team Score</th>
+              <th scope="col">Away Team Score</th>
+              <th scope="col">Home Team Goals</th>
+              <th scope="col">Away Team Goals</th>
+              <th scope="col">Winner</th>
+              <th scope="col">Venue</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let game of upcomingResults;">
+              <td>
+                {{ game.date | date }}
+              </td>
+              <td>
+                {{ game.hteam }}
+              </td>
+              <td>
+                {{ game.ateam }}
+              </td>
+              <td>
+                {{ game.hscore != '0' ? game.hscore : 'NA'}}
+              </td>
+              <td>
+                {{ game.ascore != '0' ? game.ascore : 'NA'}}
+              </td>
+              <td>
+                {{ game.hgoals != '0' ? game.hgoals : 'NA'}}
+              </td>
+              <td>
+                {{ game.agoals != '0' ? game.agoals : 'NA'}}
+              </td>
+              <td>
+                {{ game.winner != null ? game.winner : 'NA'}}
+              </td>
+              <td>
+                {{ game.venue }}
+              </td>
+              <!--<td>{{ country.area | number }}</td>-->
+              <!--<td>{{ country.population | number }}</td>-->
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
 </div>

@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Game} from '../model/game.model';
 import {Team} from '../model/team.model';
 import {LadderItem} from '../model/ladder-item.model';
+import {Tip} from '../model/tip.model';
 
 @Injectable()
 
@@ -17,7 +18,8 @@ export class DataService {
   newsUrl = 'https://newsapi.org/v2/top-headlines?country=au&category=sports&apiKey=bfcd98dce90244bd8d79b0e7f3b50511&q=afl';
   headlines: string[];
   ladderData: Array<LadderItem> = [];
-  gamesByRoundAndYear : Array<Game> = [];
+  gamesByRoundAndYear: Array<Game> = [];
+  gameTip: Array<Tip> = [];
   constructor(private httpService: HttpClient) {
 
   }
@@ -141,13 +143,13 @@ export class DataService {
     const ladderURL = 'https://api.squiggle.com.au/?q=ladder;source=1';
     const promise = new Promise(
       (resolve) => {
-        console.log("ladder data length is ",this.ladderData.length);
+        console.log('ladder data length is ',this.ladderData.length);
         if(this.ladderData.length > 0)
         {
-          console.log("found item in ladder data");
+          console.log('found item in ladder data');
           resolve(this.ladderData);
         }else{
-          console.log("not found items in ladder");
+          console.log('not found items in ladder');
           this.httpService.get(ladderURL).subscribe(
             (data: any) => {
               const ladderData = data.ladder
@@ -201,4 +203,26 @@ export class DataService {
     );
     return promise;
   }
+
+  getTippings(gameId) {
+    const tipURL = `https://api.squiggle.com.au/?q=tips;game=${gameId};source=7`;
+
+    const promise = new Promise(
+      (resolve) => {
+
+          this.httpService.get(tipURL).subscribe(
+            (data: any) => {
+              console.log('TIP DATA -> ', data);
+              resolve(data);
+            }
+          );
+      }
+
+    );
+
+    return promise;
+
+  }
+
+
 }
