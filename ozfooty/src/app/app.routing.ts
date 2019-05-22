@@ -3,6 +3,7 @@ import {HomeCmpComponent} from './home-cmp/home-cmp.component';
 import {HeadOnHeadCmpComponent} from './head-on-head-cmp/head-on-head-cmp.component';
 import {LadderPageComponent} from './ladder-page/ladder-page.component';
 import {FixturesComponent} from './fixtures/fixtures.component';
+import {ResultComponent} from './result/result.component';
 export const AppRoutes: Routes = [
 
   {
@@ -25,6 +26,10 @@ export const AppRoutes: Routes = [
   {
     path: 'fixtures',
     component: FixturesComponent,
+  },
+  {
+    path: 'results',
+    component: ResultComponent
   }
 ];
 

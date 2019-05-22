@@ -9,8 +9,8 @@ import {DataService} from '../services/data.service';
   styleUrls: ['./head-on-head-cmp.component.css']
 })
 export class HeadOnHeadCmpComponent implements OnInit {
-  teams = ['india', 'pakistan', 'china', 'nepal'];
-  matches: [];
+
+
 
   config = {
     displayKey: 'name', // if objects array passed which key to be displayed defaults to description
@@ -76,7 +76,7 @@ export class HeadOnHeadCmpComponent implements OnInit {
             if( gameDate <= today ) {
               this.gameResults.push(game);
 
-              if (this.teamOne == game.winner){
+              if (this.teamOne.name == game.winner){
                 this.winCount++;
               }
 

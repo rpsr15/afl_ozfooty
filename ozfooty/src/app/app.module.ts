@@ -18,6 +18,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LadderComponent } from './home-cmp/ladder/ladder.component';
 import { LadderPageComponent } from './ladder-page/ladder-page.component';
 import { FixturesComponent } from './fixtures/fixtures.component';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FixturesComponent } from './fixtures/fixtures.component';
     NewsHealinesComponent,
     LadderComponent,
     LadderPageComponent,
-    FixturesComponent
+    FixturesComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,
