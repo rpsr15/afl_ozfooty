@@ -72,7 +72,8 @@ export class HeadOnHeadCmpComponent implements OnInit {
             let gameDate = Date.parse(game.date);
             let today = new Date();
 
-            if(gameDate<=today){
+            // @ts-ignore
+            if( gameDate <= today ) {
               this.gameResults.push(game);
 
               if (this.teamOne == game.winner){

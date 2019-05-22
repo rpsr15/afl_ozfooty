@@ -23,9 +23,6 @@
           </div>
 
         </div>
-        <div *ngFor="let t of gameTips">
-          this  {{t.gameid}}
-        </div>
         <!--game results-->
 
 
@@ -67,7 +64,7 @@
             </div>
             <div class="r-double-column">
               <div class="inner-content location" style="margin-top: 8%;">
-                <div class="time ">7:50 PM</div>
+                <div class="time ">{{game.date | date:'HH:mm'}}</div>
                 <i class="fas fa-map-marker-alt"></i>
                 {{game.venue}}
               </div>
@@ -78,27 +75,33 @@
 
               </div>
             </div>
-
+          <div *ngFor="let tip of gameTips">
+            <div  *ngIf="game.id == tip.gameid">
             <div class="r-double-column">
-              <div class="inner-content"  style="margin-top: 8%;" *ngFor="let tip of gameTips">
-               <div class="r-row" >
-                 <div class="r-double-column">
-                   {{game.hteam}}
-                 </div>
-                 <div class="r-column">
-                   {{tip.tips}}%
-                 </div>
-               </div>
-                <div class="r-row">
-                  <div class="r-double-column">
-                   {{game.ateam}}
-                  </div>
-                  <div class="r-column">
-                    {{tip.confidence}}%
-                  </div>
-                </div>
+              <div class="inner-content"  style="margin-top: 8%;">
+                   <div class="r-row">
+                     <div class="r-double-column">
+                       {{game.hteam}}
+                     </div>
+                     <div class="r-column">
+                       {{tip.hconfidence}}%
+                     </div>
+                   </div>
+                    <div class="r-row">
+                      <div class="r-double-column">
+                       {{game.ateam}}
+                      </div>
+                      <div class="r-column">
+                        {{tip.confidence}}%
+                      </div>
+                    </div>
+
               </div>
             </div>
+
+            </div>
+          </div>
+
           </div>
         </div>
         </div>

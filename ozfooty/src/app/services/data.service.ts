@@ -212,7 +212,7 @@ export class DataService {
 
           this.httpService.get(tipURL).subscribe(
             (data: any) => {
-              console.log('TIP DATA -> ', data);
+              // console.log('TIP DATA -> ', data);
               resolve(data);
             }
           );

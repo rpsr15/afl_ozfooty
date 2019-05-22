@@ -18,8 +18,8 @@ export class NewsHealinesComponent implements OnInit {
   loadNews()
   {
     this.dataService.getNews().then(
-      (data : [string]) => {
-        console.log(data);
+      (data: [string]) => {
+        // console.log(data);
         this.news = data;
         
       }
