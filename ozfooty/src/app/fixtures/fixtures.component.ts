@@ -58,7 +58,7 @@ export class FixturesComponent implements OnInit {
     searchOnKey: 'name' // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
   };
   myTeamSelect: any = [];
-  yearSelect: any = [];
+  yearSelect: any = '2019';
   roundSelect: any = [];
 
   setRounds() {
@@ -139,18 +139,24 @@ export class FixturesComponent implements OnInit {
               if (game.ateamid == myteam || game.hteamid == myteam) {
                 console.log('here');
                 // this.storeGameAndDate(game, game.date);
-                this.dataService.getTippings(game.id).then(( tipData: any) => {
+                const gameDate = Date.parse(game.date);
+                const today = new Date();
 
-                  const tips = tipData.tips;
+                // @ts-ignore
+                if (gameDate > today) {
+                  this.dataService.getTippings(game.id).then((tipData: any) => {
 
-                  for(const i in tips) {
-                    this.gameTips.push(tips[i]);
-                  }
+                    const tips = tipData.tips;
 
-                  this.gameDates.add(game.date.slice(0, 10));
-                  this.gameResults.push(game);
+                    for (const i in tips) {
+                      this.gameTips.push(tips[i]);
+                    }
 
-                });
+                    this.gameDates.add(game.date.slice(0, 10));
+                    this.gameResults.push(game);
+
+                  });
+              }
               }
             }
 
@@ -161,6 +167,7 @@ export class FixturesComponent implements OnInit {
 
 
     } else {
+
       this.getAndFormatDataArray(this.roundSelect);
     }
 
@@ -231,8 +238,8 @@ export class FixturesComponent implements OnInit {
 
       }
 
-      // console.log('Tips ->',this.gameTips);
-      // console.log('Game ->',this.gameResults);
+      console.log('Tips ->',this.gameTips);
+      console.log('Game ->',this.gameResults);
 
     });
   }
