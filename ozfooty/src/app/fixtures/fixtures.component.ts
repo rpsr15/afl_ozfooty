@@ -195,7 +195,7 @@ export class FixturesComponent implements OnInit {
     this.gameDates = new Set();
 
 
-    this.dataService.getGamesByRoundYear(this.yearSelect, round).then((data: any) => {
+    this.dataService.getGamesFixtures(this.yearSelect, round).then((data: any) => {
 
       const games = data;
 
@@ -238,8 +238,8 @@ export class FixturesComponent implements OnInit {
 
       }
 
-      console.log('Tips ->',this.gameTips);
-      console.log('Game ->',this.gameResults);
+      console.log('Tips ->', this.gameTips);
+      console.log('Game ->', this.gameResults);
 
     });
   }

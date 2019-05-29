@@ -83,7 +83,55 @@ export class DataService {
     return promise;
   }
 
- getGamesByRoundYear(year, round) {
+  getGamesByRoundYear(year, round) {
+    const gamesURL = `https://api.squiggle.com.au/?q=games;year=${year};complete=100`;
+    console.log(gamesURL);
+    const promise = new Promise(
+      (resolve) => {
+
+        if (this.gamesByRoundAndYear.length > 0) {
+          resolve(this.gamesByRoundAndYear);
+        } else {
+          this.httpService.get(gamesURL).subscribe(
+            (data: any) => {
+              let gameData = data.games;
+              for (const index in gameData) {
+                let game = gameData[index];
+                const gameNew = new Game(
+                  +game.complete,
+                  +game.is_grand_final,
+                  game.tz,
+                  +game.hbehinds,
+                  game.ateam,
+                  +game.winnerteamid,
+                  +game.hgoals,
+                  game.updated,
+                  +game.round,
+                  +game.is_final,
+                  +game.hscore,
+                  +game.abehinds,
+                  game.winner,
+                  +game.ascore,
+                  game.hteam,
+                  game.ateamid,
+                  game.venue,
+                  +game.hteamid,
+                  +game.agoals,
+                  +game.year,
+                  game.date,
+                  +game.id
+                );
+                this.gamesByRoundAndYear.push(gameNew);
+              }
+              resolve(this.gamesByRoundAndYear);
+            }
+          );
+        }
+      });
+    return promise;
+  }
+
+ getGamesFixtures(year, round) {
    const gamesURL = `https://api.squiggle.com.au/?q=games;year=${year};round=${round}`;
    console.log(gamesURL);
    const promise = new Promise(

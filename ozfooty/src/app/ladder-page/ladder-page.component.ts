@@ -30,16 +30,16 @@ export class LadderPageComponent implements OnInit {
     // get ladder
     this.service.getLadder().then(
       (result) => {
-        //console.log(result);
-        //console.log("round is"+result[0].round);
-        //get data for round
-        //get game data for current year and round
-       
+        // console.log(result);
+        // console.log("round is"+result[0].round);
+        // get data for round
+        // get game data for current year and round
+
         this.service.getGamesByRoundYear(2019, result[0].round).then(
           (gameD:any) => {
            // console.log(gameD);
-            
-            //generate data
+
+            // generate data
             this.generateData(gameD);
 
           }
@@ -57,19 +57,16 @@ export class LadderPageComponent implements OnInit {
 
   }
 
-  generateData(data: Array<Game>)
-  {
-    for(let i = 0 ; i < this.ladder.length; i++)
-    {
-      //console.log(this.ladder[i].team);
+  generateData(data: Array<Game>) {
+    for(let i = 0 ; i < this.ladder.length; i++) {
+      // console.log(this.ladder[i].team);
       const team = this.ladder[i].team;
      // console.log("current team ",team);
       let played = 0;
       let won = 0;
       let loss = 0;
       let form = '';
-      for(let j = 0 ; j < data.length;j++ )
-      {
+      for(let j = 0 ; j < data.length;j++ ) {
         const ateam = data[j].ateam;
         let hteam = data[j].hteam;
        // console.log(ateam, hteam);
