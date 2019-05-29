@@ -13,7 +13,7 @@ export class NewsHealinesComponent implements OnInit {
   ngOnInit() {
     this.loadNews();
   }
-  news = ["sdfsdfsdfsd", "sdfdsfdsfsd", "sdfdsfdsf"];
+  news = [];
 
   loadNews()
   {
@@ -21,7 +21,7 @@ export class NewsHealinesComponent implements OnInit {
       (data: [string]) => {
         // console.log(data);
         this.news = data;
-        
+
       }
     );
   }

@@ -199,7 +199,7 @@ export class FixturesComponent implements OnInit {
 
       const games = data;
 
-      for(const index in games) {
+      for (const index in games) {
 
         const game = games[index] ;
 
