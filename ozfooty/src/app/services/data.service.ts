@@ -19,7 +19,9 @@ export class DataService {
   headlines: string[];
   ladderData: Array<LadderItem> = [];
   gamesByRoundAndYear: Array<Game> = [];
+
   gameTip: Array<Tip> = [];
+
   constructor(private httpService: HttpClient) {
 
   }
@@ -30,7 +32,7 @@ export class DataService {
         this.httpService.get(this.newsUrl).subscribe(
           (data: any) => {
             const news = [];
-            const articles  = data.articles;
+            const articles = data.articles;
             // tslint:disable-next-line: forin
             for (const index in articles) {
 
@@ -43,8 +45,6 @@ export class DataService {
     );
     return promise;
   }
-
-
 
 
   getGameData(year) {
@@ -68,6 +68,7 @@ export class DataService {
     return promise;
   }
 
+
   getCurrentRound() {
     const roundUrl = 'https://api.squiggle.com.au/?q=games;year=2019;complete=0';
     const promise = new Promise(
@@ -88,9 +89,9 @@ export class DataService {
    const promise = new Promise(
     (resolve) => {
 
-      if (this.gamesByRoundAndYear.length > 0) {
+        if (this.gamesByRoundAndYear.length > 0) {
           resolve(this.gamesByRoundAndYear);
-      } else {
+        } else {
           this.httpService.get(gamesURL).subscribe(
             (data: any) => {
                 let gameData = data.games;
@@ -137,25 +138,25 @@ export class DataService {
    return promise;
  }
 
-  getLadder()
-  {
 
+
+  getLadder() {
     const ladderURL = 'https://api.squiggle.com.au/?q=ladder;source=1';
     const promise = new Promise(
       (resolve) => {
-        console.log('ladder data length is ',this.ladderData.length);
-        if(this.ladderData.length > 0)
-        {
-          console.log('found item in ladder data');
+        console.log("ladder data length is ", this.ladderData.length);
+        if (this.ladderData.length > 0) {
+          console.log("found item in ladder data");
           resolve(this.ladderData);
-        }else{
-          console.log('not found items in ladder');
+        } else {
+          console.log("not found items in ladder");
+
           this.httpService.get(ladderURL).subscribe(
             (data: any) => {
               const ladderData = data.ladder
               // tslint:disable-next-line:prefer-const
               this.ladderData = [];
-              for (const index in ladderData){
+              for (const index in ladderData) {
 
                 const item = ladderData[index];
 
@@ -171,7 +172,7 @@ export class DataService {
                 this.ladderData.push(tm);
               }
               //sort ladderItem array
-              this.ladderData.sort((a,b) => {
+              this.ladderData.sort((a, b) => {
                 return a.rank - b.rank;
               });
               resolve(this.ladderData);
@@ -185,22 +186,21 @@ export class DataService {
   }
 
 
-// return team as an array of string
+  // return team as an array of string
   getTeam() {
     const promise = new Promise((resolve) => {
-        if ( this.teams.length && this.teams.length > 0) {
-          console.log("mil gayi ghar se");
-          resolve(this.teams);
-        } else {
-          console.log("bhar se mil gati");
-          this.httpService.get(this.teamURL).subscribe(
-            (data) => {
-              resolve(data);
-            }
-          );
-        }
+      if (this.teams.length && this.teams.length > 0) {
+        console.log("mil gayi ghar se");
+        resolve(this.teams);
+      } else {
+        console.log("bhar se mil gati");
+        this.httpService.get(this.teamURL).subscribe(
+          (data) => {
+            resolve(data);
+          }
+        );
       }
-    );
+    });
     return promise;
   }
 

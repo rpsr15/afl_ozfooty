@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../services/data.service';
 import {LadderItem} from '../model/ladder-item.model';
+import {Game} from '../model/game.model';
 
 @Component({
   selector: 'app-ladder-page',
@@ -10,6 +11,7 @@ import {LadderItem} from '../model/ladder-item.model';
 
 
 export class LadderPageComponent implements OnInit {
+  gameData: Array<Game> = [];
   ladder: Array<LadderItem> = [];
   options = ['2017', '2018', '2019'];
   config = {
@@ -28,38 +30,76 @@ export class LadderPageComponent implements OnInit {
     // get ladder
     this.service.getLadder().then(
       (result) => {
-  
-        for(const index in result){
+        //console.log(result);
+        //console.log("round is"+result[0].round);
+        //get data for round
+        //get game data for current year and round
+       
+        this.service.getGamesByRoundYear(2019, result[0].round).then(
+          (gameD:any) => {
+           // console.log(gameD);
+            
+            //generate data
+            this.generateData(gameD);
+
+          }
+        );
+
+        for (const index in result){
+
 
           this.ladder.push(result[index]);
         }
 
+
       }
     );
-    this.service.getGamesByRoundYear(2019,9).then(
-      (result) =>
-      {
-        console.log(result);
-      }
-    );
+
   }
 
-
-
-  test()
+  generateData(data: Array<Game>)
   {
-    this.service.getLadder().then(
-      (result) => {
-        console.log("received in testr"+result);
-        for(const index in result){
+    for(let i = 0 ; i < this.ladder.length; i++)
+    {
+      //console.log(this.ladder[i].team);
+      const team = this.ladder[i].team;
+     // console.log("current team ",team);
+      let played = 0;
+      let won = 0;
+      let loss = 0;
+      let form = '';
+      for(let j = 0 ; j < data.length;j++ )
+      {
+        const ateam = data[j].ateam;
+        let hteam = data[j].hteam;
+       // console.log(ateam, hteam);
 
+        if ((team === ateam || team === hteam) && data[j].round <= this.ladder[i].round) {
 
-          this.ladder.push(result[index]);
+          played++;
+          if(data[j].winner === team) {
+           //   console.log(data[j].winner);
+              won++;
+              // @ts-ignore
+              this.ladder[i].form.push('W');
+          } else {
+              loss++;
+              // @ts-ignore
+            this.ladder[i].form.push('L');
+          }
         }
-
       }
-    );
+      //console.log('Played: ',played,' won: ',won,' loss ',loss,' form ',form );
+      this.ladder[i].played = played;
+      this.ladder[i].lost = loss;
+      this.ladder[i].won = won;
+     // this.ladder[i].form = form;
+      this.ladder[i].form.splice(0, this.ladder[i].form.length-5);
+      console.log(this.ladder[i].form);
+    }
+
   }
+
 
 
 }
