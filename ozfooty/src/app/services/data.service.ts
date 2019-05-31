@@ -19,6 +19,7 @@ export class DataService {
   headlines: string[];
   ladderData: Array<LadderItem> = [];
   gamesByRoundAndYear: Array<Game> = [];
+  gamesFixtures: Array<Game> = [];
 
   gameTip: Array<Tip> = [];
 
@@ -137,9 +138,6 @@ export class DataService {
    const promise = new Promise(
     (resolve) => {
 
-        if (this.gamesByRoundAndYear.length > 0) {
-          resolve(this.gamesByRoundAndYear);
-        } else {
           this.httpService.get(gamesURL).subscribe(
             (data: any) => {
                 let gameData = data.games;
@@ -170,16 +168,11 @@ export class DataService {
                     game.date,
                     +game.id
                   );
-                  this.gamesByRoundAndYear.push(gameNew);
+                  this.gamesFixtures.push(gameNew);
                 }
-                resolve(this.gamesByRoundAndYear);
+                resolve(this.gamesFixtures);
             }
           );
-
-      }
-
-
-
     }
 
   );
@@ -267,9 +260,7 @@ export class DataService {
       }
 
     );
-
     return promise;
-
   }
 
 

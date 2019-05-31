@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-ladder',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ladder.component.css']
 })
 export class LadderComponent implements OnInit {
+  ladderData: any = [];
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.getLadderData();
   }
 
+
+  getLadderData() {
+    this.dataService.getLadder().then((data) => {
+        console.log('LADDER-> ', data);
+        this.ladderData = data;
+    });
+  }
 }

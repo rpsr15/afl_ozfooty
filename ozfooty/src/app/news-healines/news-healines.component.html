@@ -1,6 +1,9 @@
 <div class="card pl-2">
-  <div class="news-header">TOP NEWS STORIES</div>
+  <div class = "card-header card-header-danger">
+    <h5 class = "card-title">Top News Stories</h5>
+  </div>
   <div class="list-group">
-    <a  class = "list-group-item" *ngFor="let n of news">{{ n }}</a>
+    <a  class = "list-group-item" *ngFor="let n of news | slice:0:5; let o = odd ; let e = even;"
+        [ngClass]="{odd: o, even: e}">{{ n  | slice:0:n.lastIndexOf('-')}}</a>
   </div>
 </div>

@@ -54,3 +54,67 @@
     flex: 4;
   }
 }
+
+img{
+  height: 80px;
+  width: 80px;
+}
+.inner-content{
+  padding: 1vw;
+}
+.game-display-card{
+  width: 50vw;
+
+}
+.location{
+  color: #222D5A;
+  font-weight: 600;
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.2vw;
+
+  padding: 1vw;
+}
+.game-date{
+  color: #222D5A;
+  font-weight: 600;
+  text-decoration: none;
+  outline: none;
+  font-size: 1.5vw;
+}
+.time{
+  background-color: #f0f3f8;
+  text-align: center;
+  font-size: 1.2vw;
+  font-weight: bold;
+  color: #222D5A;
+}
+h2 {
+  color: #111;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+  margin: 0 0 24px;
+  padding: 0 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.card-header-danger{
+  background: #222D5A;
+}
+.score{
+  font-size: 4vw;
+  font-weight: bold;
+}
+
+.line-fix{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: pre;
+}
+.select-year{
+  width: 15vw;
+}

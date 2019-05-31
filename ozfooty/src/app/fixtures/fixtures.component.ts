@@ -19,6 +19,8 @@ export class FixturesComponent implements OnInit {
   dateArray = [];
   gameResults = [];
   gameDates: Set<string>;
+  gameDateArray = [];
+  sortedDateArray = [];
 
 
   yearOptions = ['2017', '2018', '2019'];
@@ -73,31 +75,6 @@ export class FixturesComponent implements OnInit {
      this.gameDates = new Set();
   }
 
-  // storeGameAndDate(game, gameDate) {
-  //   if(this.dateArray && this.dateArray.filter(e => e.date !== game.date)) {
-  //       console.log("heree");
-  //     const d = this.formatCustomDate(gameDate);
-  //
-  //     const obj = {
-  //       date: gameDate,
-  //       formatedDate: d
-  //     };
-  //
-  //     this.dateArray.push(obj);
-  //
-  //   }
-  //
-  //   this.gameResults.push(game);
-  // }
-
-  // formatCustomDate(d) {
-  //   const d1 = new Date(d);
-  //   const wkdy = this.weekday[d1.getDay()];
-  //   const month = this.monthNames[d1.getMonth()];
-  //   const ds: string = wkdy + ', ' + d1.getDate() + ' ' + month;
-  //   return ds;
-  // }
-
   getDropdownTeamInfo() {
     this.dataService.getTeam().then((data: any) => {
       // console.log('Team data-->>', data.teams);
@@ -114,17 +91,24 @@ export class FixturesComponent implements OnInit {
 
   }
 
+  // generateDateSet(){
+  //   this.gameDateArray.sort(
+  //     (a, b) => {
+  //       return Date.parse(b) -  Date.parse(a);
+  //     }
+  //   );
+  // }
 
+getSortedDates() {
+    const sortedDates = Array.from(this.gameDates).sort();
+    return sortedDates;
+}
 
 
 
   headToHead() {
 
     if (this.roundSelect === undefined) {
-      // this.dataService.getCurrentRound().then((data: any) => {
-      //  this.getAndFormatDataArray(data)
-      //
-      // });
 
       this.dataService.getGameData(this.yearSelect).then((data: any) => {
           const games = data.games;
@@ -158,6 +142,26 @@ export class FixturesComponent implements OnInit {
                   });
               }
               }
+            } else {
+              // this.storeGameAndDate(game, game.date);
+              const gameDate = Date.parse(game.date);
+              const today = new Date();
+
+              // @ts-ignore
+              if (gameDate > today) {
+                this.dataService.getTippings(game.id).then((tipData: any) => {
+
+                  const tips = tipData.tips;
+
+                  for (const i in tips) {
+                    this.gameTips.push(tips[i]);
+                  }
+
+                  this.gameDates.add(game.date.slice(0, 10));
+                  this.gameResults.push(game);
+
+                });
+              }
             }
 
           }
@@ -166,27 +170,22 @@ export class FixturesComponent implements OnInit {
       });
 
 
+      this.sortedDateArray = this.getSortedDates();
+
     } else {
 
       this.getAndFormatDataArray(this.roundSelect);
+
     }
 
 
-
+    console.log('Sorted Dates', this.dateArray);
 
   }
 
-  // testDates() {
-  //   console.log(this.gameDates);
-  //   this.gameDates.forEach(
-  //    (a) => {
-  //      console.log(a);
-  //    }
-  //  );
-  // }
 
 
-
+// this is called only when round is selected
   getAndFormatDataArray(round) {
 
     this.gameResults = [];
@@ -215,7 +214,7 @@ export class FixturesComponent implements OnInit {
               for(const i in tips) {
                 this.gameTips.push(tips[i]);
               }
-
+              this.gameDateArray.push(game.date.slice(0, 10));
               this.gameDates.add(game.date.slice(0, 10));
               this.gameResults.push(game);
 
@@ -229,7 +228,7 @@ export class FixturesComponent implements OnInit {
             for(const i in tips) {
               this.gameTips.push(tips[i]);
             }
-
+            this.gameDateArray.push(game.date.slice(0, 10));
             this.gameDates.add(game.date.slice(0, 10));
             this.gameResults.push(game);
 
@@ -238,13 +237,11 @@ export class FixturesComponent implements OnInit {
 
       }
 
-      console.log('Tips ->', this.gameTips);
-      console.log('Game ->', this.gameResults);
+      // console.log('Tips ->', this.gameTips);
+      // console.log('Game ->', this.gameResults);
 
     });
   }
-
-
 
 
 

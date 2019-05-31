@@ -1,4 +1,30 @@
-<div class = "card-header card-header-danger">
-      Ladder
-</div>
+<div class="card pl-3">
+  <div class = "card-header card-header-danger">
+    <h5 class = "card-title">Ladder</h5>
+  </div>
+  <div class="card-body">
+    <div class=""table-responsive>
+      <table class="table">
+        <tbody *ngFor="let item of ladderData |slice:0:10; let o = odd ; let e = even;"
+               [ngClass]="{odd: o, even: e}" >
+        <tr>
+          <td>
+            <div class="r-row">
+              <div class="r-double-column">
+                {{item.rank}}. {{ item.team }}
+              </div>
+              <div class="r-column">
+                  <img src='assets/img/team-logo/{{item.team}}.jpg' style="height: 2vw;width: 2vw;">
+              </div>
+            </div>
+              <!--{{item.rank}}. {{ item.team }}-->
+              <!--<img src='assets/img/team-logo/{{item.team}}.jpg' style="height: 2vw;">-->
 
+          </td>
+        </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>

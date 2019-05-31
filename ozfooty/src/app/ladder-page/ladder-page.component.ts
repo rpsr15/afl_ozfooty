@@ -35,6 +35,7 @@ export class LadderPageComponent implements OnInit {
         // get data for round
         // get game data for current year and round
 
+
         this.service.getGamesByRoundYear(2019, result[0].round).then(
           (gameD:any) => {
            // console.log(gameD);

@@ -63,7 +63,7 @@
               </div>
             </div>
             <div class="r-double-column">
-              <div class="inner-content location" style="margin-top: 8%;">
+              <div class="inner-content location">
                 <div class="time ">{{game.date | date:'HH:mm'}}</div>
                 <i class="fas fa-map-marker-alt"></i>
                 {{game.venue}}
@@ -75,43 +75,42 @@
 
               </div>
             </div>
-          <div *ngFor="let tip of gameTips">
-            <div  *ngIf="game.id == tip.gameid">
-            <div class="r-double-column">
-              <div class="inner-content"  style="margin-top: 8%;">
-                   <div class="r-row">
-                     <div class="r-double-column">
-                       {{game.hteam}}
-                     </div>
-                     <div class="r-column">
-                       {{tip.hconfidence}}%
-                     </div>
-                   </div>
-                    <div class="r-row">
-                      <div class="r-double-column">
-                       {{game.ateam}}
-                      </div>
-                      <div class="r-column">
-                        {{tip.confidence}}%
-                      </div>
-                    </div>
-
-              </div>
-            </div>
+            <div>
 
             </div>
-          </div>
+
+          <!--<div *ngFor="let tip of gameTips">-->
+            <!--<div  *ngIf="game.id == tip.gameid">-->
+            <!--<div class="r-double-column">-->
+              <!--<div class="inner-content">-->
+                   <!--<div class="r-row">-->
+                     <!--<div class="r-double-column">-->
+                       <!--{{game.hteam}}-->
+                     <!--</div>-->
+                     <!--<div class="r-column">-->
+                       <!--{{tip.hconfidence}}%-->
+                     <!--</div>-->
+                   <!--</div>-->
+                    <!--<div class="r-row">-->
+                      <!--<div class="r-double-column">-->
+                       <!--{{game.ateam}}-->
+                      <!--</div>-->
+                      <!--<div class="r-column">-->
+                        <!--{{tip.confidence}}%-->
+                      <!--</div>-->
+                    <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+          <!--</div>&lt;!&ndash;tips&ndash;&gt;-->
 
           </div>
         </div>
         </div>
       </div>
       </div>
-
     </div>
     </div>
   </div>
-
-
 </div>
 
