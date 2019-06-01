@@ -19,7 +19,6 @@ export class FixturesComponent implements OnInit {
   dateArray = [];
   gameResults = [];
   gameDates: Set<string>;
-  gameDateArray = [];
   sortedDateArray = [];
 
 
@@ -171,6 +170,7 @@ getSortedDates() {
 
 
       this.sortedDateArray = this.getSortedDates();
+      console.log('sorteddates ', this.sortedDateArray);
 
     } else {
 
@@ -178,8 +178,6 @@ getSortedDates() {
 
     }
 
-
-    console.log('Sorted Dates', this.dateArray);
 
   }
 
@@ -214,7 +212,7 @@ getSortedDates() {
               for(const i in tips) {
                 this.gameTips.push(tips[i]);
               }
-              this.gameDateArray.push(game.date.slice(0, 10));
+
               this.gameDates.add(game.date.slice(0, 10));
               this.gameResults.push(game);
 
@@ -228,7 +226,7 @@ getSortedDates() {
             for(const i in tips) {
               this.gameTips.push(tips[i]);
             }
-            this.gameDateArray.push(game.date.slice(0, 10));
+
             this.gameDates.add(game.date.slice(0, 10));
             this.gameResults.push(game);
 

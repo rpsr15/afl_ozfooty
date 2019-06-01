@@ -51,6 +51,9 @@
           <!--</table>-->
           <!--</div>-->
         <!--</div>-->
+        <!--<div *ngFor="let d of sortedDateArray">-->
+          <!--there {{d}}-->
+        <!--</div>-->
 
       <div class="game-display" *ngFor="let d of gameDates">
         <div class="game-date">{{d | date}}</div>
@@ -79,30 +82,30 @@
 
             </div>
 
-          <!--<div *ngFor="let tip of gameTips">-->
-            <!--<div  *ngIf="game.id == tip.gameid">-->
-            <!--<div class="r-double-column">-->
-              <!--<div class="inner-content">-->
-                   <!--<div class="r-row">-->
-                     <!--<div class="r-double-column">-->
-                       <!--{{game.hteam}}-->
-                     <!--</div>-->
-                     <!--<div class="r-column">-->
-                       <!--{{tip.hconfidence}}%-->
-                     <!--</div>-->
-                   <!--</div>-->
-                    <!--<div class="r-row">-->
-                      <!--<div class="r-double-column">-->
-                       <!--{{game.ateam}}-->
-                      <!--</div>-->
-                      <!--<div class="r-column">-->
-                        <!--{{tip.confidence}}%-->
-                      <!--</div>-->
-                    <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-          <!--</div>&lt;!&ndash;tips&ndash;&gt;-->
+          <div *ngFor="let tip of gameTips">
+            <div  *ngIf="game.id == tip.gameid">
+            <div class="r-double-column">
+              <div class="inner-content">
+                   <div class="r-row">
+                     <div class="r-double-column">
+                       {{game.hteam}}
+                     </div>
+                     <div class="r-column">
+                       {{tip.hconfidence}}%
+                     </div>
+                   </div>
+                    <div class="r-row">
+                      <div class="r-double-column">
+                       {{game.ateam}}
+                      </div>
+                      <div class="r-column">
+                        {{tip.confidence}}%
+                      </div>
+                    </div>
+              </div>
+            </div>
+            </div>
+          </div><!--tips-->
 
           </div>
         </div>
