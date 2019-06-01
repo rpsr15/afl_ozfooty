@@ -61,6 +61,32 @@ export class DataService {
     );
     return promise;
   }
+  getGamesNearStadium(stadium) {
+    const gamesURL = `https://api.squiggle.com.au/?q=games;complete=0`;
+
+    const promise = new Promise(
+
+      (resolve) => {
+        this.httpService.get(gamesURL).subscribe(
+          (data: any) => {
+            const games = [];
+            for (const index in data.games) {
+
+              if (data.games[index].venue === stadium) {
+
+                games.push(data.games[index]);
+
+              }
+            }
+            resolve(games);
+          }
+        );
+      }
+    );
+    return promise;
+
+  }
+
 
   getNearestStadiums(lat, lng) {
     let minDistance = Number.MAX_VALUE;
@@ -121,7 +147,7 @@ export class DataService {
       } else {
         this.httpService.get(this.gameURL + year).subscribe(
           (data) => {
-           resolve(data);
+            resolve(data);
           }
         );
       }
@@ -257,9 +283,7 @@ export class DataService {
               // tslint:disable-next-line:prefer-const
               this.ladderData = [];
               for (const index in ladderData) {
-
                 const item = ladderData[index];
-
                 const tm = new LadderItem(
                   +item.year,
                   +item.round,

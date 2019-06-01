@@ -1,6 +1,75 @@
+/* media queries */
+@media only screen and (max-width:768px)
+{
+  
+    .card-body
+    {
+        padding: 10px 15px;
+    }
+
+}
+/* for small screen devices */
+@media screen and (max-width: 800px) {
+    div#game { display: none }
+    .team-logo
+    {
+      
+        height: 5rem;
+        width: 3rem;
+        display: flex;
+         align-items: center;
+         justify-content: center;
+         flex-direction: column;
+    }
+ }
+ /* for medium and large screen devices */
+ @media screen and (min-width: 800px) {
+    div#game-small-screen { display: none }
+
+
+
+ }
+.match-details
+{
+    display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+}
+.game-card
+{
+    margin: 5px;
+}
+.team-logo
+{
+    height: 5rem;
+    width: 3rem;
+    display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+}
+.game-time-header
+{
+    background-color: #F0F3F8;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+.game-location-header{
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
 .card-title
 {
     font-size:1rem;
+}
+
+.match-tile{
+    overflow: hidden;
+ 
+    margin: 3px;
 }
 
 .btn-primary
