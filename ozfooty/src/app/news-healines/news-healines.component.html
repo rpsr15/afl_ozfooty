@@ -3,7 +3,7 @@
     <h5 class = "card-title">Top News Stories</h5>
   </div>
   <div class="list-group">
-    <a  class = "list-group-item" *ngFor="let n of news | slice:0:5; let o = odd ; let e = even;"
-        [ngClass]="{odd: o, even: e}">{{ n  | slice:0:n.lastIndexOf('-')}}</a>
+    <div  class = "list-group-item list-group-item-odd" *ngFor="let n of news | slice:0:5; let o = odd ; let e = even;"
+        [ngClass]="{odd: o, even: e}">{{ n  | slice:(n.indexOf(':')+1):n.lastIndexOf('-')}}</div>
   </div>
 </div>

@@ -4,6 +4,8 @@ import {HeadOnHeadCmpComponent} from './head-on-head-cmp/head-on-head-cmp.compon
 import {LadderPageComponent} from './ladder-page/ladder-page.component';
 import {FixturesComponent} from './fixtures/fixtures.component';
 import {ResultComponent} from './result/result.component';
+import {GamesNearbyComponent} from './games-nearby/games-nearby.component';
+
 export const AppRoutes: Routes = [
 
   {
@@ -30,6 +32,10 @@ export const AppRoutes: Routes = [
   {
     path: 'results',
     component: ResultComponent
+  },
+  {
+    path: 'nearby',
+    component : GamesNearbyComponent
   }
 ];
 
