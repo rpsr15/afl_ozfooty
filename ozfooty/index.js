@@ -10,8 +10,8 @@ function getPlayers() {
 
     var promise = new Promise(function (resolve, reject) {
         // do a thing, possibly async, then…
-     
-        https.get('https://en.wikipedia.org/wiki/2019_AFL_season', (resp) => {
+
+        https.get('https://www.afl.com.au/stats/player-ratings/ratings-hub', (resp) => {
             let data = '';
 
             // A chunk of data has been recieved.
@@ -50,32 +50,49 @@ app.get("/getTopPlayers", function (req, res) {
 
     getPlayers().then(function(result) {
         //console.log(result); // "Stuff worked!"
-       
-        var startIndex = result.indexOf('<li>Numbers underlined indicates the player did not play in that round.</li></ul>');
-        var endIndex = result.indexOf('<h3><span class="mw-headline" id="Player_milestones">Player milestones<');
-        var dd = result.substring(startIndex+81, endIndex);
-        var r = dd.replace("/'<td></td>'/g", "");
-        var json = html2json(r);
-        //console.log();
-        console.log(typeof json.child);
-      
-        const values = Object.values(json.child);
-        const keys = Object.keys(json.child);
+          var lastupdatestring = result.substring(
+            result.indexOf('Last Updated:'),
+            result.indexOf('Last Updated:')+60
+          );
+          lastupdatestring= lastupdatestring.substring(
+            lastupdatestring.indexOf('ong>')+4,
+            lastupdatestring.indexOf('</div')
+          );
+          console.log(lastupdatestring);
 
-        console.log(keys.length);
-        // for(var i = 0 ; i < keys.length;i++)
-        // {
-        //     console.log(values[i],"end");
-        // }
-       var rows =  Object.values((Object.values(values[1].child)[1].child));
-       
-        console.log(rows);
- 
-        var root = HTMLParser.parse(r);
-      //  console.log(root.firstChild.firstChild);
-        console.log(startIndex);
-        console.log(endIndex);
-        res.send({htmlData: 'ravi'});
+          var startIndex = result.indexOf('<table class="ladder zebra player-ratings">');
+          console.log(startIndex);
+          var truncatedResult = result.substring(startIndex);
+          var i = truncatedResult.indexOf('<tbody>');
+          var end = truncatedResult.indexOf('</tbody>');
+          truncatedResult = truncatedResult.substring(i,end);
+          var arr = truncatedResult.split('\n');
+       //   console.log(arr);
+          var players = [];
+          for(var i = 0 ; i < arr.length ;i++)
+          {
+            var playerName , points;
+
+            if(arr[i].includes('data-playerid') )
+            {
+             // console.log(arr[i]);
+              var playerName = arr[i].substring(arr[i].indexOf('">')+2, arr[i].lastIndexOf('</a>'));
+             // console.log(playerName);
+            }else if( arr[i].includes('pts'))
+            {
+
+              var points = arr[i].substring(
+                arr[i].indexOf('">')+2,
+                arr[i].lastIndexOf('</td>')
+              );
+              players.push({name: playerName, pts: points});
+              //console.log(points);
+            }
+
+
+          }
+         // console.log(players);
+        res.send({topPlayers: players, lastUpdated: lastupdatestring});
       }, function(err) {
         console.log(err); // Error: "It broke"
       });
