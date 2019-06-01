@@ -19,6 +19,7 @@ import { LadderComponent } from './home-cmp/ladder/ladder.component';
 import { LadderPageComponent } from './ladder-page/ladder-page.component';
 import { FixturesComponent } from './fixtures/fixtures.component';
 import { ResultComponent } from './result/result.component';
+import { GamesNearbyComponent } from './games-nearby/games-nearby.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ResultComponent } from './result/result.component';
     LadderComponent,
     LadderPageComponent,
     FixturesComponent,
-    ResultComponent
+    ResultComponent,
+    GamesNearbyComponent
   ],
   imports: [
     BrowserModule,
