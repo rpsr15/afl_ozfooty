@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { parse } from 'node-html-parser';
 
 @Component({
   selector: 'app-news-healines',
@@ -12,6 +13,18 @@ export class NewsHealinesComponent implements OnInit {
 
   ngOnInit() {
     this.loadNews();
+    // Get top players
+      this.dataService.getTopPlayers().then(
+        (data:any) =>
+        {
+          console.log('getting top players');
+        //  console.log(data.htmlData);
+          const root : any = parse(data.htmlData);
+          console.log(data.htmlData);
+         
+        }
+      );
+
   }
   news = [];
 

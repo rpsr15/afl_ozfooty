@@ -117,6 +117,8 @@ export class DataService {
     return d;
   }
 
+  //Get top news from the api
+
   getNews() {
     const promise = new Promise(
       (resolve) => {
@@ -342,6 +344,22 @@ export class DataService {
         );
       }
 
+    );
+    return promise;
+  }
+
+  // Get Top 10 players
+  getTopPlayers(){
+    const promise = new Promise(
+      (resolve)=>
+      {
+        this.httpService.get('http://localhost:3000/getTopPlayers').subscribe(
+          (data)=>
+          {
+            resolve(data);
+          }
+        );
+      }
     );
     return promise;
   }
