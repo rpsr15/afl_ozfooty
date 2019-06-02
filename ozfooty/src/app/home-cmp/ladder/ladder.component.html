@@ -3,7 +3,7 @@
     <h5 class = "card-title">Ladder</h5>
   </div>
   <div class="card-body">
-    <div class=""table-responsive>
+    <div class="table-responsive">
       <table class="table">
         <tbody *ngFor="let item of ladderData |slice:0:10; let o = odd ; let e = even;"
                [ngClass]="{odd: o, even: e}" >
