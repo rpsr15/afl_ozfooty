@@ -14,11 +14,13 @@ export class FixturesComponent implements OnInit {
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
+
   games: Array<Game> = [];
   gameResults = [];
   gameDates: Set<string>;
   sortedDateArray = [];
   hasSearched = false;
+  currentR;
 
 
   yearOptions = ['2017', '2018', '2019'];
@@ -60,17 +62,41 @@ export class FixturesComponent implements OnInit {
   myTeamSelect: any = [];
 
   roundSelect: any = [];
+  ngOnInit() {
+    // this.roundOptions.apply(null, {length: N}).map(Number.call, Number)
+    this.currentRound().then(
+      (currentRound) => {
+        this.setRounds(currentRound);
+      }
+    );
 
-  setRounds() {
-    for (let i = 1; i <= 23; i++ ) {
-      this.roundOptions.push(i);
-    }
+    this.getDropdownTeamInfo();
 
   }
+  setRounds(currentR) {
+    for (let i = currentR; i <= 23; i++ ) {
+      this.roundOptions.push(i);
+    }
+  }
+
 
 
   constructor(private dataService: DataService ) {
      this.gameDates = new Set();
+  }
+
+  currentRound() {
+    const promise = new Promise(
+      (resolve) => {
+        this.dataService.getCurrentRound().then((data: any) => {
+          this.currentR = data;
+          console.log(this.currentR);
+          resolve(data);
+        });
+      }
+    );
+
+    return promise;
   }
 
   getDropdownTeamInfo() {
@@ -83,20 +109,8 @@ export class FixturesComponent implements OnInit {
 
 
 
-  ngOnInit() {
-    // this.roundOptions.apply(null, {length: N}).map(Number.call, Number)
-    this.getDropdownTeamInfo();
-    this.setRounds();
 
-  }
 
-  // generateDateSet(){
-  //   this.gameDateArray.sort(
-  //     (a, b) => {
-  //       return Date.parse(b) -  Date.parse(a);
-  //     }
-  //   );
-  // }
 
 getSortedDates() {
     const sortedDates = Array.from(this.gameDates).sort();
@@ -114,6 +128,7 @@ generateGameAndDateArray(game) {
     this.gameDates.add(game.date.slice(0, 10));
     this.gameResults.push(game);
   }
+  console.log('gameResult', this.gameResults);
 }
 
 dataFilter(data) {
@@ -150,6 +165,7 @@ result() {
     });
   } else {
     this.dataService.getTippingsByRound(this.roundSelect).then((data: any) => {
+      console.log('in round select');
       this.dataFilter(data);
     });
   }

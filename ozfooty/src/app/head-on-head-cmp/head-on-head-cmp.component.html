@@ -78,6 +78,38 @@
     </div>
   </div>
 
+  <!-- end of mach tile -->
+  <div class="card game-card" id="game-small-screen" *ngFor="let game of gameResults | slice:0:3">
+    <div class="match-tile">
+      <div style="display:flex; flex-direction: row;">
+        <div class="r-column  team-logo ">
+
+          <img style="height: 2rem;" src='assets/img/team-logo/{{game.hteam}}.jpg'>
+          <div>{{game.hteam}}</div>
+        </div>
+        <div class="r-column  team-logo ">
+
+          <img style="height: 2rem;" src='assets/img/team-logo/{{game.ateam}}.jpg'>
+          <div>{{game.ateam}}</div>
+        </div>
+      </div>
+      <div class="r-row">
+        <div class="r-double-column match-details">
+          <div class="r-row game-location-header">
+            Winner: {{game.winner}}
+          </div>
+          <div class="r-row game-time-header">
+            {{game.date | date}}
+          </div>
+          <div class="r-row game-location-header">
+            {{game.venue}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!-- game card for small  -->
   <div class="card game-card" id="game-small-screen" *ngFor="let game of gameResults">
       <div class="match-tile">

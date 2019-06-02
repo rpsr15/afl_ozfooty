@@ -91,7 +91,7 @@ app.get("/getTopPlayers", function (req, res) {
 
 
           }
-         // console.log(players);
+        // console.log(players);
         res.send({topPlayers: players, lastUpdated: lastupdatestring});
       }, function(err) {
         console.log(err); // Error: "It broke"

@@ -79,6 +79,10 @@ h2 {
 
 
 }
+@media screen and (min-width: 800px) {
+  div#game-small-screen { display: none }
+
+}
 .match-details
 {
   display: flex;
@@ -91,7 +95,7 @@ h2 {
   outline: none;
   /*display: inline-block;*/
   text-align: center;
-  font-size: 1.2vw;
+  font-size: 1.2rem;
 }
 .game-card
 {
