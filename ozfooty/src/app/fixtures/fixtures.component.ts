@@ -15,11 +15,10 @@ export class FixturesComponent implements OnInit {
   ];
 
   games: Array<Game> = [];
-  gameTips = [];
-  dateArray = [];
   gameResults = [];
   gameDates: Set<string>;
   sortedDateArray = [];
+  hasSearched = false;
 
 
   yearOptions = ['2017', '2018', '2019'];
@@ -59,7 +58,7 @@ export class FixturesComponent implements OnInit {
     searchOnKey: 'name' // key on which search should be performed this will be selective search. if undefined this will be extensive search on all keys
   };
   myTeamSelect: any = [];
-  yearSelect: any = '2019';
+
   roundSelect: any = [];
 
   setRounds() {
@@ -77,6 +76,7 @@ export class FixturesComponent implements OnInit {
   getDropdownTeamInfo() {
     this.dataService.getTeam().then((data: any) => {
       // console.log('Team data-->>', data.teams);
+      console.log('getting team options');
       this.teamOptions = data.teams;
     });
   }
@@ -103,144 +103,59 @@ getSortedDates() {
     return sortedDates;
 }
 
+generateGameAndDateArray(game) {
 
+  // this.storeGameAndDate(game, game.date);
+  const gameDate = Date.parse(game.date);
+  const today = new Date();
 
-  headToHead() {
-
-    if (this.roundSelect === undefined) {
-
-      this.dataService.getGameData(this.yearSelect).then((data: any) => {
-          const games = data.games;
-
-          for(let index in games) {
-            const game = games[index];
-            if (this.myTeamSelect) {
-              const myteam = this.myTeamSelect.id;
-                  // console.log('gg',data);
-                  // console.log('aid',game.ateamid);
-
-              if (game.ateamid == myteam || game.hteamid == myteam) {
-                console.log('here');
-                // this.storeGameAndDate(game, game.date);
-                const gameDate = Date.parse(game.date);
-                const today = new Date();
-
-                // @ts-ignore
-                if (gameDate > today) {
-                  this.dataService.getTippings(game.id).then((tipData: any) => {
-
-                    const tips = tipData.tips;
-
-                    for (const i in tips) {
-                      this.gameTips.push(tips[i]);
-                    }
-
-                    this.gameDates.add(game.date.slice(0, 10));
-                    this.gameResults.push(game);
-
-                  });
-              }
-              }
-            } else {
-              // this.storeGameAndDate(game, game.date);
-              const gameDate = Date.parse(game.date);
-              const today = new Date();
-
-              // @ts-ignore
-              if (gameDate > today) {
-                this.dataService.getTippings(game.id).then((tipData: any) => {
-
-                  const tips = tipData.tips;
-
-                  for (const i in tips) {
-                    this.gameTips.push(tips[i]);
-                  }
-
-                  this.gameDates.add(game.date.slice(0, 10));
-                  this.gameResults.push(game);
-
-                });
-              }
-            }
-
-          }
-        // console.log('Tips ->',this.gameTips);
-        // console.log('Game ->',this.gameResults);
-      });
-
-
-      this.sortedDateArray = this.getSortedDates();
-      console.log('sorteddates ', this.sortedDateArray);
-
-    } else {
-
-      this.getAndFormatDataArray(this.roundSelect);
-
-    }
-
-
+  // @ts-ignore
+  if (gameDate > today) {
+    this.gameDates.add(game.date.slice(0, 10));
+    this.gameResults.push(game);
   }
+}
 
+dataFilter(data) {
+  const games = data.tips;
 
+  for (let index in games){
+    const game = games[index];
 
-// this is called only when round is selected
-  getAndFormatDataArray(round) {
+    if (this.myTeamSelect) {
+      const myteam = this.myTeamSelect.id;
 
-    this.gameResults = [];
-    this.dateArray = [];
-    this.gameTips = [];
-    this.gameDates = new Set();
-
-
-    this.dataService.getGamesFixtures(this.yearSelect, round).then((data: any) => {
-
-      const games = data;
-
-      for (const index in games) {
-
-        const game = games[index] ;
-
-
-        if (this.myTeamSelect) {
-          const myteam = this.myTeamSelect.id;
-          if (game.ateamid == myteam || game.hteamid == myteam) {
-            // this.storeGameAndDate(game, game.date);
-            this.dataService.getTippings(game.id).then(( tipData: any) => {
-
-              const tips = tipData.tips;
-
-              for(const i in tips) {
-                this.gameTips.push(tips[i]);
-              }
-
-              this.gameDates.add(game.date.slice(0, 10));
-              this.gameResults.push(game);
-
-            });
-          }
-        } else {
-          this.dataService.getTippings(game.id).then(( tipData: any) => {
-
-            const tips = tipData.tips;
-
-            for(const i in tips) {
-              this.gameTips.push(tips[i]);
-            }
-
-            this.gameDates.add(game.date.slice(0, 10));
-            this.gameResults.push(game);
-
-          });
-        }
-
+      if (game.ateamid == myteam || game.hteamid == myteam) {
+        this.generateGameAndDateArray(game);
       }
 
-      // console.log('Tips ->', this.gameTips);
-      // console.log('Game ->', this.gameResults);
+    } else {
+      this.generateGameAndDateArray(game);
+    }
 
+  }
+  this.sortedDateArray = this.getSortedDates();
+  this.hasSearched = true;
+}
+
+result() {
+
+  this.gameResults = [];
+  this.gameDates = new Set();
+  this.sortedDateArray = [];
+
+  if (this.roundSelect === undefined) {
+    this.dataService.getTippings().then((data: any) => {
+      this.dataFilter(data);
+    });
+  } else {
+    this.dataService.getTippingsByRound(this.roundSelect).then((data: any) => {
+      this.dataFilter(data);
     });
   }
 
+
+}
 
 
 }

@@ -43,7 +43,7 @@ export class DataService {
   gameTip: Array<Tip> = [];
 
   constructor(private httpService: HttpClient) { }
-  //Methods to find nearest stadium to a user
+  // Methods to find nearest stadium to a user
 
   deg2rad(deg) {
     return deg * (Math.PI / 180);
@@ -90,10 +90,10 @@ export class DataService {
 
   getNearestStadiums(lat, lng) {
     let minDistance = Number.MAX_VALUE;
-    let nearestStadium = "";
+    let nearestStadium = '';
     for (const i in this.stadiums) {
       // console.log(this.stadiums[i].lat, this.stadiums[i].long);
-      let distance = this.getDistanceFromLatLonInKm(lat, lng, this.stadiums[i].lat, this.stadiums[i].long);
+      const distance = this.getDistanceFromLatLonInKm(lat, lng, this.stadiums[i].lat, this.stadiums[i].long);
 
       if (distance < minDistance) {
         minDistance = distance;
@@ -117,7 +117,7 @@ export class DataService {
     return d;
   }
 
-  //Get top news from the api
+  // Get top news from the api
 
   getNews() {
     const promise = new Promise(
@@ -183,9 +183,9 @@ export class DataService {
         } else {
           this.httpService.get(gamesURL).subscribe(
             (data: any) => {
-              let gameData = data.games;
+              const gameData = data.games;
               for (const index in gameData) {
-                let game = gameData[index];
+                const game = gameData[index];
                 const gameNew = new Game(
                   +game.complete,
                   +game.is_grand_final,
@@ -220,6 +220,51 @@ export class DataService {
     return promise;
   }
 
+  // getGameAndTips(year) {
+  //
+  //   const promise = new Promise((resolve) => {
+  //     if (Array.isArray(this.matches) && this.matches.length) {
+  //       resolve(this.matches);
+  //     } else {
+  //       this.httpService.get(this.gameURL + year).subscribe(
+  //         (data: any) => {
+  //           const gameData = data.games;
+  //           for (const index in gameData) {
+  //             const game = gameData[index];
+  //             const gameNew = new Game(
+  //               +game.complete,
+  //               +game.is_grand_final,
+  //               game.tz,
+  //               +game.hbehinds,
+  //               game.ateam,
+  //               +game.winnerteamid,
+  //               +game.hgoals,
+  //               game.updated,
+  //               +game.round,
+  //               +game.is_final,
+  //               +game.hscore,
+  //               +game.abehinds,
+  //               game.winner,
+  //               +game.ascore,
+  //               game.hteam,
+  //               game.ateamid,
+  //               game.venue,
+  //               +game.hteamid,
+  //               +game.agoals,
+  //               +game.year,
+  //               game.date,
+  //               +game.id
+  //             );
+  //             this.gamesByRoundAndYear.push(gameNew);
+  //           }
+  //           resolve(this.gamesByRoundAndYear);
+  //         }
+  //       );
+  //     }
+  //   });
+  //   return promise;
+  // }
+
   getGamesFixtures(year, round) {
     const gamesURL = `https://api.squiggle.com.au/?q=games;year=${year};round=${round}`;
     console.log(gamesURL);
@@ -228,9 +273,11 @@ export class DataService {
 
         this.httpService.get(gamesURL).subscribe(
           (data: any) => {
-            let gameData = data.games;
+            const gameData = data.games;
             for (const index in gameData) {
-              let game = gameData[index];
+              const game = gameData[index];
+
+
               const gameNew = new Game(
                 +game.complete,
                 +game.is_grand_final,
@@ -272,16 +319,16 @@ export class DataService {
     const ladderURL = 'https://api.squiggle.com.au/?q=ladder;source=1';
     const promise = new Promise(
       (resolve) => {
-        console.log("ladder data length is ", this.ladderData.length);
+        console.log('ladder data length is ', this.ladderData.length);
         if (this.ladderData.length > 0) {
-          console.log("found item in ladder data");
+          console.log('found item in ladder data');
           resolve(this.ladderData);
         } else {
-          console.log("not found items in ladder");
+          console.log('not found items in ladder');
 
           this.httpService.get(ladderURL).subscribe(
             (data: any) => {
-              const ladderData = data.ladder
+              const ladderData = data.ladder;
               // tslint:disable-next-line:prefer-const
               this.ladderData = [];
               for (const index in ladderData) {
@@ -297,7 +344,7 @@ export class DataService {
                 );
                 this.ladderData.push(tm);
               }
-              //sort ladderItem array
+              // sort ladderItem array
               this.ladderData.sort((a, b) => {
                 return a.rank - b.rank;
               });
@@ -316,10 +363,10 @@ export class DataService {
   getTeam() {
     const promise = new Promise((resolve) => {
       if (this.teams.length && this.teams.length > 0) {
-        console.log("mil gayi ghar se");
+
         resolve(this.teams);
       } else {
-        console.log("bhar se mil gati");
+
         this.httpService.get(this.teamURL).subscribe(
           (data) => {
             resolve(data);
@@ -330,8 +377,26 @@ export class DataService {
     return promise;
   }
 
-  getTippings(gameId) {
-    const tipURL = `https://api.squiggle.com.au/?q=tips;game=${gameId};source=7`;
+  getTippings() {
+    const tipURL = 'https://api.squiggle.com.au/?q=tips;year=2019;source=8';
+
+    const promise = new Promise(
+      (resolve) => {
+
+        this.httpService.get(tipURL).subscribe(
+          (data: any) => {
+            // console.log('TIP DATA -> ', data);
+            resolve(data);
+          }
+        );
+      }
+
+    );
+    return promise;
+  }
+
+  getTippingsByRound(round) {
+    const tipURL = `https://api.squiggle.com.au/?q=tips;year=2019;source=8;round=${round}`;
 
     const promise = new Promise(
       (resolve) => {
@@ -349,13 +414,11 @@ export class DataService {
   }
 
   // Get Top 10 players
-  getTopPlayers(){
+  getTopPlayers() {
     const promise = new Promise(
-      (resolve)=>
-      {
+      (resolve) => {
         this.httpService.get('http://localhost:3000/getTopPlayers').subscribe(
-          (data)=>
-          {
+          (data) => {
             resolve(data);
           }
         );
