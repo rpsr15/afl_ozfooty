@@ -28,7 +28,7 @@
   </div>
 
 
-  <div class="card pl-2">
+  <div class="card pl-2" *ngIf = "this.hasSearched">
    <h5 *ngIf="this.hasSearched && this.games.length == 0;" style="margin: 10px 10px;">
           Currently no games near your postcode or you may have entered invalid postcode!
       </h5>

@@ -1,4 +1,4 @@
-<button (click)="test()">Test </button>
+
 <div class = "ladder">
   <div class = "card pl-2">
    <div class = "r-row">
@@ -9,9 +9,9 @@
      </div>
 
      <div class ="card-body">
-       <div  class = "select-year">
+       <!-- <div  class = "col-md-3">
          <ngx-select-dropdown [options]="options" [config]="config"></ngx-select-dropdown>
-       </div>
+       </div> -->
 
 <!--       add table code here-->
        <div class=""table-responsive>
@@ -22,9 +22,6 @@
            <th>P</th>
            <th>W</th>
            <th>L</th>
-           <th>D</th>
-           <th>F</th>
-           <th>A</th>
            <th>%</th>
            <th>SF</th>
 
@@ -35,11 +32,8 @@
              <td>{{item.rank}}. {{ item.team }}</td>
 
              <td>{{item.played}}</td>
-             <td>7</td>
-             <td>1</td>
-             <td>0</td>
-             <td>779</td>
-             <td>535</td>
+             <td>{{ item.won }}</td>
+             <td>{{ item.lost }}</td>
              <td>{{item.percentage}}</td>
              <td >
                <div class="r-row">
@@ -58,7 +52,7 @@
 
      </div>
        </div>
-   </div>  //row end here
+   </div>  
 
     <p >Standing are updated with the completion of each game</p>
     <hr class="mb-1">
