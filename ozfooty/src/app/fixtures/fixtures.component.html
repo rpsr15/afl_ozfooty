@@ -25,35 +25,6 @@
         </div>
         <!--game results-->
 
-
-        <!--<div class=""table-responsive>-->
-          <!--<div *ngFor="let d of gameDates">-->
-            <!--<h5>{{d | date }} </h5>-->
-          <!--<table class="table">-->
-            <!--<thead class="text-primary">-->
-            <!--<th>Home Team</th>-->
-            <!--<th>Away Team</th>-->
-            <!--<th>Home Team Score</th>-->
-            <!--<th>Away Team Score</th>-->
-            <!--<th>Winner</th>-->
-            <!--</thead>-->
-            <!--<tbody *ngFor="let item of gameResults; let o = odd ; let e = even;"-->
-                   <!--[ngClass]="{odd: o, even: e}" >-->
-            <!--<tr *ngIf='d === item.date.slice(0,10)'>-->
-              <!--<td>{{item.hteam}}</td>-->
-              <!--<td>{{item.ateam}}</td>-->
-              <!--<td>{{item.hscore}}</td>-->
-              <!--<td>{{item.ascore}}</td>-->
-              <!--<td>{{item.winner}}</td>-->
-            <!--</tr>-->
-            <!--</tbody>-->
-
-          <!--</table>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div *ngFor="let d of sortedDateArray">-->
-          <!--there {{d}}-->
-        <!--</div>-->
         <!-- each match tile  -->
           <div class="r-row" *ngIf="hasSearched && gameResults.length==0">
             <div class="r-column pl-2">
@@ -68,7 +39,9 @@
         <!-- each match tile  -->
         <div class="game-display" *ngFor="let d of sortedDateArray">
           <div class="game-date">{{d | date}}</div>
+
           <div class="display-card" *ngFor="let game of gameResults">
+
         <div class="card game-card" id = "game" *ngIf='d === game.date.slice(0,10)' >
           <div class="match-tile" >
             <div class="r-row">
@@ -108,8 +81,42 @@
           </div>
         </div>
           </div>
+
+          <div class="display-card" *ngFor="let game of gameResults">
+          <div class="card game-card" id="game-small-screen" *ngIf='d === game.date.slice(0,10)'>
+            <div class="match-tile">
+              <div style="display:flex; flex-direction: row;">
+                <div class="r-column  team-logo ">
+
+                  <img style="height: 2rem;" src='assets/img/team-logo/{{game.hteam}}.jpg'>
+                  <div>{{game.hteam}}</div>
+                </div>
+                <div class="r-column  team-logo ">
+
+                  <img style="height: 2rem;" src='assets/img/team-logo/{{game.ateam}}.jpg'>
+                  <div>{{game.ateam}}</div>
+                </div>
+              </div>
+              <div class="r-row">
+                <div class="r-double-column match-details">
+                  <div class="r-row game-time-header">
+                    {{game.hconfidence}}% Win percentage of both teams {{100 - game.hconfidence | number : '2.2-2'}}%
+                  </div>
+                  <div class="r-row game-location-header">
+                    {{game.venue}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
       </div>
         <!-- end of mach tile -->
+
+
+
 
         <!--Start of original display card-->
       <!--<div class="game-display" *ngFor="let d of sortedDateArray">-->
