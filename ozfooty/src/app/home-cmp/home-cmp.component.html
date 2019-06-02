@@ -9,6 +9,8 @@
       </div>
     <div class="game-display">
       <div class="display-card" *ngFor="let game of gameResults | slice:0:2;">
+
+        <!-- start card here -->
         <div class="game-display-card card pl-2">
 
           <div class="r-row">
@@ -66,14 +68,9 @@
           </div>
 
         </div>
+        <!-- end card here -->
       </div>
-      <!--<div class="r-row">-->
-        <!--<div class="r-column ">-->
-          <!--<div class="select-year align-self-end">-->
-          <!--<button type="button" class="btn btn-primary">Show more</button>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
+
     </div>
     </div>
     <div class="card pl-3">
@@ -144,75 +141,9 @@
 
           </div>
         </div>
-        <!--<div class="r-row">-->
-        <!--<div class="r-column ">-->
-        <!--<div class="select-year align-self-end">-->
-        <!--<button type="button" class="btn btn-primary">Show more</button>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
+
       </div>
     </div>
-    <!--<div class="card pl-3">-->
-      <!--<div class = "card-header card-header-danger">-->
-        <!--<h5 class = "card-title">Upcoming Games</h5>-->
-      <!--</div>-->
-      <!--<div class="game-display">-->
-        <!--<div class="display-card" *ngFor="let game of gameUpcoming | slice:0:3;">-->
-          <!--<div class="game-display-card card pl-2">-->
-            <!--<div class="r-row">-->
-              <!--<div class="r-column align-self-center" >-->
-                <!--<div class="inner-content">-->
-                  <!--<img src='assets/img/team-logo/{{game.hteam}}.jpg'>-->
-                  <!--<div class="line-fix d-flex">{{game.hteam}}</div>-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="r-double-column align-self-center">-->
-                <!--<div class="inner-content location" style="margin-top: 8%;">-->
-                  <!--<div class="time ">{{game.date | date}}</div>-->
-                  <!--<i class="fas fa-map-marker-alt"></i>-->
-                  <!--{{game.venue}}-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="r-column align-self-center">-->
-                <!--<div class="inner-content justify-content-center">-->
-                  <!--<img src='assets/img/team-logo/{{game.ateam}}.jpg'>-->
-                  <!--<div class="line-fix d-flex">{{game.ateam}}</div>-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div *ngFor="let tip of gameTips">-->
-                <!--<div  *ngIf="game.id == tip.gameid">-->
-                  <!--<div class="r-double-column">-->
-                    <!--<div class="inner-content"  style="margin-top: 8%;">-->
-                      <!--<div class="r-row">-->
-                        <!--<div class="r-double-column">-->
-                          <!--{{game.hteam}}-->
-                        <!--</div>-->
-                        <!--<div class="r-column">-->
-                          <!--{{tip.hconfidence}}%-->
-                        <!--</div>-->
-                      <!--</div>-->
-                      <!--<div class="r-row">-->
-                        <!--<div class="r-double-column ">-->
-                          <!--{{game.ateam}}-->
-                        <!--</div>-->
-                        <!--<div class="r-column">-->
-                          <!--{{tip.confidence}}%-->
-                        <!--</div>-->
-                      <!--</div>-->
-
-                    <!--</div>-->
-                  <!--</div>-->
-
-                <!--</div>-->
-              <!--</div>-->
-
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-
   </div>
 <!--  Ladder of team-->
   <div class = "r-column ">
