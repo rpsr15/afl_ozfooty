@@ -11,8 +11,8 @@ import {Game} from '../model/game.model';
 
 
 export class LadderPageComponent implements OnInit {
-  gameData: Array<Game> = [];
-  ladder: Array<LadderItem> = [];
+  gameData: Array<Game> = []; //store the game data requested from the api
+  ladder: Array<LadderItem> = []; //stores ladder information of the  table
   options = ['2017', '2018', '2019'];
   config = {
     height: 'auto',
@@ -51,6 +51,8 @@ export class LadderPageComponent implements OnInit {
 
           this.ladder.push(result[index]);
         }
+
+        console.log(this.ladder);
 
 
       }
@@ -93,7 +95,7 @@ export class LadderPageComponent implements OnInit {
       this.ladder[i].won = won;
      // this.ladder[i].form = form;
       this.ladder[i].form.splice(0, this.ladder[i].form.length-5);
-      console.log(this.ladder[i].form);
+    
     }
 
   }
