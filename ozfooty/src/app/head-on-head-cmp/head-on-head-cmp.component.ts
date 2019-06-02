@@ -58,6 +58,10 @@ export class HeadOnHeadCmpComponent implements OnInit {
     let myteam = this.myTeamSelect.id;
     let rivalTeam = this.rivalTeamSelect.id;
 
+    if (myteam === rivalTeam){
+      return;
+    }
+
     this.dataService.getGameData('2019').then((data:any) => {
 
         const games = data.games;

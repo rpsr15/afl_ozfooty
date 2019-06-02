@@ -35,7 +35,7 @@ export class FixturesComponent implements OnInit {
   };
 
 
-  roundOptions = [];
+   roundOptions = [];
   roundConfig = {
     height: '20vw',
     placeholder: 'Round', // text to be displayed when no item is selected defaults to Select,
@@ -65,14 +65,16 @@ export class FixturesComponent implements OnInit {
   ngOnInit() {
     // this.roundOptions.apply(null, {length: N}).map(Number.call, Number)
     this.currentRound().then(
-      (currentRound) => {
-        this.setRounds(currentRound);
+      (currentR) => {
+        this.roundOptions = [];
+          this.setRounds(currentR);
       }
     );
 
     this.getDropdownTeamInfo();
 
   }
+
   setRounds(currentR) {
     for (let i = currentR; i <= 23; i++ ) {
       this.roundOptions.push(i);
