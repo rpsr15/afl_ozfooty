@@ -12,15 +12,17 @@ function getPlayers() {
         // do a thing, possibly async, then…
 
         https.get('https://www.afl.com.au/stats/player-ratings/ratings-hub', (resp) => {
-            let data = '';
-
+        console.log(resp.data)    
+        let data = '';
             // A chunk of data has been recieved.
             resp.on('data', (chunk) => {
+              console.log(chunk)
                 data += chunk;
             });
 
             // The whole response has been received. Print out the result.
             resp.on('end', () => {
+              console.log("hgccgf"+data)
                 resolve(data);
             });
 
@@ -49,7 +51,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 app.get("/getTopPlayers", function (req, res) {
 
     getPlayers().then(function(result) {
-        //console.log(result); // "Stuff worked!"
+           console.log("stuuff worked"+result); // "Stuff worked!"
           var lastupdatestring = result.substring(
             result.indexOf('Last Updated:'),
             result.indexOf('Last Updated:')+60
